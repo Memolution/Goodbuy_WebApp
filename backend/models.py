@@ -1,7 +1,7 @@
 from . import db
 
 # create user 'mysql'@'localhost' identified by 'pass';
-# create database tabiluck;
+# create database shigakusha;
 # grant all on tabiluck.* to mysql@localhost;
 # from backend.models import init
 # init()
@@ -94,4 +94,89 @@ class TeacherInfo(db.Model):
         )
 
     def __repr__(self):
-        return '<StudentInfo %r, %r>' % self.name
+        return '<TeacherInfo %r, %r>' % self.name
+
+
+class ScheduleInfo(db.Model):
+    __tablename__ = 'schedules'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer,
+                        db.ForeignKey(
+                            'students.id',
+                            onupdate='CASCADE',
+                            ondelete='CASCADE')
+                        )
+    teacher_id = db.Column(db.Integer,
+                        db.ForeignKey(
+                            'teachers.id',
+                            onupdate='CASCADE',
+                            ondelete='CASCADE')
+                        )
+    Mon1 = db.Column(db.Integer)
+    Mon2 = db.Column(db.Integer)
+    Mon3 = db.Column(db.Integer)
+    Mon4 = db.Column(db.Integer)
+    Tue1 = db.Column(db.Integer)
+    Tue2 = db.Column(db.Integer)
+    Tue3 = db.Column(db.Integer)
+    Tue4 = db.Column(db.Integer)
+    Wed1 = db.Column(db.Integer)
+    Wed2 = db.Column(db.Integer)
+    Wed3 = db.Column(db.Integer)
+    Wed4 = db.Column(db.Integer)
+    Thu1 = db.Column(db.Integer)
+    Thu2 = db.Column(db.Integer)
+    Thu3 = db.Column(db.Integer)
+    Thu4 = db.Column(db.Integer)
+    Fri1 = db.Column(db.Integer)
+    Fri2 = db.Column(db.Integer)
+    Fri3 = db.Column(db.Integer)
+    Fri4 = db.Column(db.Integer)
+    Sat1 = db.Column(db.Integer)
+    Sat2 = db.Column(db.Integer)
+    Sat3 = db.Column(db.Integer)
+    Sat4 = db.Column(db.Integer)
+    Sun1 = db.Column(db.Integer)
+    Sun2 = db.Column(db.Integer)
+    Sun3 = db.Column(db.Integer)
+    Sun4 = db.Column(db.Integer)
+
+
+    def to_dict(self):
+        return dict(
+            id = self.id,
+            student_id = self.student_id,
+            teacher_id = self.teacher_id,
+            Mon1 = self.Mon1,
+            Mon2 = self.Mon2,
+            Mon3 = self.Mon3,
+            Mon4 = self.Mon4,
+            Tue1 = self.Tue1,
+            Tue2 = self.Tue2,
+            Tue3 = self.Tue3,
+            Tue4 = self.Tue4,
+            Wed1 = self.Wed1,
+            Wed2 = self.Wed2,
+            Wed3 = self.Wed3,
+            Wed4 = self.Wed4,
+            Thu1 = self.Thu1,
+            Thu2 = self.Thu2,
+            Thu3 = self.Thu3,
+            Thu4 = self.Thu4,
+            Fri1 = self.Fri1,
+            Fri2 = self.Fri2,
+            Fri3 = self.Fri3,
+            Fri4 = self.Fri4,
+            Sat1 = self.Sat1,
+            Sat2 = self.Sat2,
+            Sat3 = self.Sat3,
+            Sat4 = self.Sat4,
+            Sun1 = self.Sun1,
+            Sun2 = self.Sun2,
+            Sun3 = self.Sun3,
+            Sun4 = self.Sun4
+        )
+
+    def __repr__(self):
+        return '<Scheule %r, %r>' % self.id
