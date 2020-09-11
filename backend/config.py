@@ -6,7 +6,7 @@ class BaseConfig(object):
          'user': 'mysql',
          'password': 'pass',
          'host': 'localhost',
-         'db_name': 'flask_vue_test'
+         'db_name': 'shigakusha'
      })
      SQLALCHEMY_TRACK_MODIFICATIONS = False
-     SQLALCHEMY_ECHO = False 
+     SQLALCHEMY_ECHO = False

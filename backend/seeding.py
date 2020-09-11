@@ -2,7 +2,7 @@ from . import db
 from .models import Test
 
 
-def seeding():
+def seed():
     # テーブルのデータを消去
     db.session.query(Test).delete()
 
