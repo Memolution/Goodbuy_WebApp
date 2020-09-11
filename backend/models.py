@@ -2,12 +2,12 @@ from . import db
 
 # create user 'mysql'@'localhost' identified by 'pass';
 # create database shigakusha;
-# grant all on tabiluck.* to mysql@localhost;
+# grant all on shigakusha.* to mysql@localhost;
 # from backend.models import init
 # init()
 
-# def init():
-#     db.create_all()
+def init():
+    db.create_all()
 
 
 class Test(db.Model):
