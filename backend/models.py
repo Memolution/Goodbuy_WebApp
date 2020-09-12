@@ -56,8 +56,8 @@ class StudentInfo(db.Model):
     name = db.Column(db.String(100))
     school = db.Column(db.String(100))
     year = db.Column(db.String(100))
-    subject = db.Column(db.String(100))
-    phone_number = db.Column(db.Integer)
+    #subject = db.Column(db.String(100))
+    #phone_number = db.Column(db.Integer)
     note = db.Column(db.String(100))
 
     def to_dict(self):
@@ -67,8 +67,8 @@ class StudentInfo(db.Model):
             name = self.name,
             school = self.school,
             year = self.yaer,
-            subject = self.subject,
-            phone_number = self.phone_number,
+            # subject = self.subject,
+            # phone_number = self.phone_number,
             note = self.note
         )
 
@@ -113,34 +113,35 @@ class ScheduleInfo(db.Model):
                             onupdate='CASCADE',
                             ondelete='CASCADE')
                         )
-    Mon1 = db.Column(db.Integer)
-    Mon2 = db.Column(db.Integer)
-    Mon3 = db.Column(db.Integer)
-    Mon4 = db.Column(db.Integer)
-    Tue1 = db.Column(db.Integer)
-    Tue2 = db.Column(db.Integer)
-    Tue3 = db.Column(db.Integer)
-    Tue4 = db.Column(db.Integer)
-    Wed1 = db.Column(db.Integer)
-    Wed2 = db.Column(db.Integer)
-    Wed3 = db.Column(db.Integer)
-    Wed4 = db.Column(db.Integer)
-    Thu1 = db.Column(db.Integer)
-    Thu2 = db.Column(db.Integer)
-    Thu3 = db.Column(db.Integer)
-    Thu4 = db.Column(db.Integer)
-    Fri1 = db.Column(db.Integer)
-    Fri2 = db.Column(db.Integer)
-    Fri3 = db.Column(db.Integer)
-    Fri4 = db.Column(db.Integer)
-    Sat1 = db.Column(db.Integer)
-    Sat2 = db.Column(db.Integer)
-    Sat3 = db.Column(db.Integer)
-    Sat4 = db.Column(db.Integer)
-    Sun1 = db.Column(db.Integer)
-    Sun2 = db.Column(db.Integer)
-    Sun3 = db.Column(db.Integer)
-    Sun4 = db.Column(db.Integer)
+    Mon1 = db.Column(db.String(100))
+    Mon2 = db.Column(db.String(100))
+    Mon3 = db.Column(db.String(100))
+    Mon4 = db.Column(db.String(100))
+    Tue1 = db.Column(db.String(100))
+    Tue2 = db.Column(db.String(100))
+    Tue3 = db.Column(db.String(100))
+    Tue4 = db.Column(db.String(100))
+    Wed1 = db.Column(db.String(100))
+    Wed2 = db.Column(db.String(100))
+    Wed3 = db.Column(db.String(100))
+    Wed4 = db.Column(db.String(100))
+    Thu1 = db.Column(db.String(100))
+    Thu2 = db.Column(db.String(100))
+    Thu3 = db.Column(db.String(100))
+    Thu4 = db.Column(db.String(100))
+    Fri1 = db.Column(db.String(100))
+    Fri2 = db.Column(db.String(100))
+    Fri3 = db.Column(db.String(100))
+    Fri4 = db.Column(db.String(100))
+    Sat1 = db.Column(db.String(100))
+    Sat2 = db.Column(db.String(100))
+    Sat3 = db.Column(db.String(100))
+    Sat4 = db.Column(db.String(100))
+    Sat5 = db.Column(db.String(100))
+    Sun1 = db.Column(db.String(100))
+    Sun2 = db.Column(db.String(100))
+    Sun3 = db.Column(db.String(100))
+    Sun4 = db.Column(db.String(100))
 
 
     def to_dict(self):
@@ -172,6 +173,7 @@ class ScheduleInfo(db.Model):
             Sat2 = self.Sat2,
             Sat3 = self.Sat3,
             Sat4 = self.Sat4,
+            Sat5 = self.Sat5,
             Sun1 = self.Sun1,
             Sun2 = self.Sun2,
             Sun3 = self.Sun3,
