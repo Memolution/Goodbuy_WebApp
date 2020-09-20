@@ -1,22 +1,18 @@
 <template>
   <div id="app">
-    <!--HelloWorld></HelloWorld-->
-    <router-view />
+    <Navigation></Navigation>
+    <v-main>
+      <router-view />
+    </v-main>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld'
-//
-// export default {
-//   name: 'App',
-//
-//   components: {
-//     HelloWorld
-//   },
-//
-//   data: () => ({
-//     //
-//   })
-// }
+import Navigation from './components/Navigation'
+export default {
+  name: 'App',
+  components: {
+    Navigation
+  }
+}
 </script>
