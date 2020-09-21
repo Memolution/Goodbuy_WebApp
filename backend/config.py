@@ -6,7 +6,7 @@ class BaseConfig(object):
          'user': 'mysql',
          'password': 'pass',
          'host': 'localhost',
-         'db_name': 'shigakusha'
+         'db_name': 'lifehack'
      })
      SQLALCHEMY_TRACK_MODIFICATIONS = False
      SQLALCHEMY_ECHO = False

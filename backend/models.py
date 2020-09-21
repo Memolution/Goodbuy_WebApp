@@ -62,7 +62,7 @@ class Todo(db.Model):
     content = db.Column(db.String(1000))
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
-    image_name　= db.Column(db.String(100))
+    image_name = db.Column(db.String(100))
     done_flag = db.Column(db.Integer)
     priority_flag = db.Column(db.Integer)
 
@@ -118,7 +118,7 @@ class PurchasedList(db.Model):
     title = db.Column(db.String(100))
     content = db.Column(db.String(1000))
     price = db.Column(db.Integer)
-    image_name　= db.Column(db.String(100))
+    image_name = db.Column(db.String(100))
     again_flag = db.Column(db.Integer)
     reputation = db.Column(db.Integer)
 

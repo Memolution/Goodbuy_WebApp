@@ -9,9 +9,9 @@ app = Flask(__name__,
 app.config.from_object('backend.config.BaseConfig')
 
 db = SQLAlchemy(app)
-# from .models import db
-# db.drop_all()
-# db.create_all()
+from .models import db
+db.drop_all()
+db.create_all()
 #
 # from .seeding import seed
 # seed()
