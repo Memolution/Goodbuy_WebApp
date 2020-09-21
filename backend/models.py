@@ -48,137 +48,120 @@ class User(db.Model):
         return '<User %r>' % self.user_name
 
 
-class StudentInfo(db.Model):
-    __tablename__ = 'students'
+class Todo(db.Model):
+    __tablename__ = 'todolists'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
-    number = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    school = db.Column(db.String(100))
-    year = db.Column(db.String(100))
-    #subject = db.Column(db.String(100))
-    #phone_number = db.Column(db.Integer)
-    note = db.Column(db.String(100))
-
-    def to_dict(self):
-        return dict(
-            id = self.id,
-            number = self.number,
-            name = self.name,
-            school = self.school,
-            year = self.yaer,
-            # subject = self.subject,
-            # phone_number = self.phone_number,
-            note = self.note
-        )
-
-    def __repr__(self):
-        return '<StudentInfo %r, %r>' % self.name
-
-
-class TeacherInfo(db.Model):
-    __tablename__ = 'teachers'
-    __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    subject_flag = db.Column(db.String(100))
-    major_flag = db.Column(db.Integer)
-
-
-    def to_dict(self):
-        return dict(
-            id = self.id,
-            name = self.name,
-            subject_flag = self.subject_flag,
-            major_flag = self.major_flag
-        )
-
-    def __repr__(self):
-        return '<TeacherInfo %r, %r>' % self.name
-
-
-class ScheduleInfo(db.Model):
-    __tablename__ = 'schedules'
-    __table_args__ = {'extend_existing': True}
-    id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.Integer,
+    user_id = db.Column(db.Integer,
                         db.ForeignKey(
-                            'students.id',
+                            'users.id',
                             onupdate='CASCADE',
                             ondelete='CASCADE')
                         )
-    teacher_id = db.Column(db.Integer,
+    title = db.Column(db.String(100))
+    content = db.Column(db.String(1000))
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
+    image_name = db.Column(db.String(100))
+    done_flag = db.Column(db.Integer)
+    priority_flag = db.Column(db.Integer)
+
+    def to_dict(self):
+        return dict(
+            id = self.id,
+            user_id = self.user_id,
+            title = self.title,
+            content = self.content,
+            start_date = self.start_date,
+            end_date = self.end_date,
+            image_name = self.image_name,
+            done_flag = self.done_flag,
+            priority_flag = self.priority_flag
+        )
+
+    def __repr__(self):
+        return '<Todo %r, %r>' % self.name
+
+
+class Category(db.Model):
+    __tablename__ = 'categories'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    todo_id = db.Column(db.Integer,
                         db.ForeignKey(
-                            'teachers.id',
+                            'todolists.id',
                             onupdate='CASCADE',
                             ondelete='CASCADE')
                         )
-    Mon1 = db.Column(db.String(100))
-    Mon2 = db.Column(db.String(100))
-    Mon3 = db.Column(db.String(100))
-    Mon4 = db.Column(db.String(100))
-    Tue1 = db.Column(db.String(100))
-    Tue2 = db.Column(db.String(100))
-    Tue3 = db.Column(db.String(100))
-    Tue4 = db.Column(db.String(100))
-    Wed1 = db.Column(db.String(100))
-    Wed2 = db.Column(db.String(100))
-    Wed3 = db.Column(db.String(100))
-    Wed4 = db.Column(db.String(100))
-    Thu1 = db.Column(db.String(100))
-    Thu2 = db.Column(db.String(100))
-    Thu3 = db.Column(db.String(100))
-    Thu4 = db.Column(db.String(100))
-    Fri1 = db.Column(db.String(100))
-    Fri2 = db.Column(db.String(100))
-    Fri3 = db.Column(db.String(100))
-    Fri4 = db.Column(db.String(100))
-    Sat1 = db.Column(db.String(100))
-    Sat2 = db.Column(db.String(100))
-    Sat3 = db.Column(db.String(100))
-    Sat4 = db.Column(db.String(100))
-    Sat5 = db.Column(db.String(100))
-    Sun1 = db.Column(db.String(100))
-    Sun2 = db.Column(db.String(100))
-    Sun3 = db.Column(db.String(100))
-    Sun4 = db.Column(db.String(100))
 
 
     def to_dict(self):
         return dict(
             id = self.id,
-            student_id = self.student_id,
-            teacher_id = self.teacher_id,
-            Mon1 = self.Mon1,
-            Mon2 = self.Mon2,
-            Mon3 = self.Mon3,
-            Mon4 = self.Mon4,
-            Tue1 = self.Tue1,
-            Tue2 = self.Tue2,
-            Tue3 = self.Tue3,
-            Tue4 = self.Tue4,
-            Wed1 = self.Wed1,
-            Wed2 = self.Wed2,
-            Wed3 = self.Wed3,
-            Wed4 = self.Wed4,
-            Thu1 = self.Thu1,
-            Thu2 = self.Thu2,
-            Thu3 = self.Thu3,
-            Thu4 = self.Thu4,
-            Fri1 = self.Fri1,
-            Fri2 = self.Fri2,
-            Fri3 = self.Fri3,
-            Fri4 = self.Fri4,
-            Sat1 = self.Sat1,
-            Sat2 = self.Sat2,
-            Sat3 = self.Sat3,
-            Sat4 = self.Sat4,
-            Sat5 = self.Sat5,
-            Sun1 = self.Sun1,
-            Sun2 = self.Sun2,
-            Sun3 = self.Sun3,
-            Sun4 = self.Sun4
+            todo_id = self.todo_id
         )
 
     def __repr__(self):
-        return '<Scheule %r, %r>' % self.id
+        return '<Category %r, %r>' % self.name
+
+
+class PurchasedList(db.Model):
+    __tablename__ = 'purchasedlists'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey(
+                            'users.id',
+                            onupdate='CASCADE',
+                            ondelete='CASCADE')
+                        )
+    title = db.Column(db.String(100))
+    content = db.Column(db.String(1000))
+    price = db.Column(db.Integer)
+    image_name = db.Column(db.String(100))
+    again_flag = db.Column(db.Integer)
+    reputation = db.Column(db.Integer)
+
+
+    def to_dict(self):
+        return dict(
+            id = self.id,
+            user_id = self.user_id,
+            title = self.title,
+            content = self.content,
+            price = self.price,
+            image_name = self.image_name,
+            again_flag = self.again_flag,
+            reputation = self.reputation
+        )
+
+    def __repr__(self):
+        return '<PurchasedList %r, %r>' % self.name
+
+
+class ReadList(db.Model):
+    __tablename__ = 'purchasedlists'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey(
+                            'users.id',
+                            onupdate='CASCADE',
+                            ondelete='CASCADE')
+                        )
+    title = db.Column(db.String(100))
+    content = db.Column(db.String(1000))
+    author = db.Column(db.String(100))
+
+
+    def to_dict(self):
+        return dict(
+            id = self.id,
+            user_id = self.user_id,
+            title = self.title,
+            content = self.content,
+            author = self.author
+        )
+
+    def __repr__(self):
+        return '<ReadList %r, %r>' % self.name
