@@ -1,8 +1,8 @@
 from . import db
 
 # create user 'mysql'@'localhost' identified by 'pass';
-# create database shigakusha;
-# grant all on shigakusha.* to mysql@localhost;
+# create database lifehack;
+# grant all on lifehack.* to mysql@localhost;
 # from backend.models import init
 # init()
 

@@ -26,9 +26,10 @@
     <v-app-bar-nav-icon @click="drawer=!drawer">
 
       </v-app-bar-nav-icon>
-      <v-toolbar-title>
-        Life Hack App
-      </v-toolbar-title>
+        <v-toolbar-title>
+          <!-- <v-btn to="/" text>Life Hack App</v-btn> -->
+          Life Hack App
+        </v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
@@ -36,6 +37,9 @@
         <v-btn text>Login</v-btn>
       </v-toolbar-items>
     </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
 
     <v-footer color="primary" dark app>
       Created by Sydney
@@ -50,9 +54,11 @@ export default {
     return {
       drawer: null,
       nav_lists: [
+        { name: 'Home', icon: 'mdi-home', link: '/' },
         { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
         { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
-        { name: 'Read List', icon: 'mdi-palette', link: '/read' }
+        { name: 'Read List', icon: 'mdi-palette', link: '/read' },
+        { name: 'About', icon: 'mdi-palette', link: '/about' }
       ]
     }
   }
