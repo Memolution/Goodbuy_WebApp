@@ -1,12 +1,15 @@
-class BaseConfig(object):
-     DEBUG = True
+import os
 
-     # Mysqlの場合の例
-     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/{db_name}?charset=utf8'.format(**{
-         'user': 'mysql',
-         'password': 'pass',
-         'host': 'localhost',
-         'db_name': 'lifehack'
-     })
-     SQLALCHEMY_TRACK_MODIFICATIONS = False
-     SQLALCHEMY_ECHO = False
+
+class BaseConfig(object):
+    DEBUG = True
+    #IMAGE_FOLDER = "./backend/static/images"
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{password}@{host}/{db_name}'.format(**{
+        'user': os.environ.get("DATABASE_USER"),
+        'password': os.environ.get("DATABASE_PASSWORD"),
+        'host': os.environ.get("DATABASE_HOST"),
+        'db_name': os.environ.get("DATABASE_NAME")
+    })
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ECHO = False
