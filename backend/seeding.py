@@ -1,5 +1,5 @@
 from . import db
-from .models import Test, StudentInfo, TeacherInfo, ScheduleInfo
+from .models import Test
 
 
 def seed():
@@ -20,7 +20,7 @@ def seed():
         )
     ]
 
-    
+
 
     db.session.add_all(test_list)
 
