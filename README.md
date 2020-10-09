@@ -1,1 +1,53 @@
-# movieApp
+# Flask + Vue
+
+## 構成
+- backend
+  - FlaskでAPIを作成
+  - ルート直下のdist(Vueでビルドしたフォルダ)をテンプレートフォルダにしている。
+  - ルート直下のrequirements.txtを元にpythonのパッケージをインストールする。
+- frontend
+  - Vueでフロントを作成
+- postgres
+  - PostgreSQLの初期化ファイルが置かれ、コンテナ起動時に実行される。
+- manage.py
+  - Flaskサーバーを起動する処理を記述
+  - コンテナ起動時に実行される。
+- docker-compose.yml
+  - コンテナ起動時の設定ファイル
+- Dockerfile_***
+  - イメージの設定ファイル  
+
+## 最初にすること
+- frontend直下に.env.localを置き、'VUE_APP_BASE_URL=<コンテナが起動しているOSのIPアドレス>:5000/'を記述する。
+  【例】
+    ```
+    VUE_APP_BASE_URL=http://localhost:5000/
+    ```
+- ルートディレクトリでdocker-compose buildを実行してイメージを作成する。
+  - backend
+    - requirements.txtの内容でpip installが走る。
+  - frontend
+    - package.jsonの内容でnpm installが走る。
+    - npm run buildが実行され、Vueのdistフォルダがルート直下に作成される。
+
+## 毎回すること
+- ルートディレクトリでdocker-compose up (バックグランドで実行する場合は '-d'を付ける。)を実行してコンテナを起動する。
+  - backend
+    - manage.pyが実行され、Flaskサーバーが立ち上がる。
+    - コンテナが起動しているOSのIPアドレス:5000でサービスにアクセスできる。
+    【例】
+      ```
+      localhost:5000/
+      ```
+  - postgres
+    - PostgreSQLが起動する。
+    ```
+    docker-compose exec postgres bash
+    psql -U root -h postgres -d lifehack
+    ```
+    
+    でpostgresコマンドを叩ける
+- フロントの開発をするときには、通常通りホストマシン上でnpm run serve でローカルサーバーを立ち上げ、ビルドするときはnpm run build
+
+## その他使うコマンド
+- npmやpipのパッケージを更新した時には、変更を反映させるためにdocker-compose up --build (-d)でビルド&コンテナ起動するようにする。

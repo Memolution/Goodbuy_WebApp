@@ -1,4 +1,8 @@
-from . import db
+from . import app
+from flask_sqlalchemy import SQLAlchemy
+
+
+db = SQLAlchemy(app)
 
 # create user 'mysql'@'localhost' identified by 'pass';
 # create database shigakusha;
@@ -6,8 +10,8 @@ from . import db
 # from backend.models import init
 # init()
 
-def init():
-    db.create_all()
+# def init():
+#     db.create_all()
 
 
 class Test(db.Model):

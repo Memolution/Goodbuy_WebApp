@@ -8,7 +8,6 @@ app = Flask(__name__,
             template_folder="../dist")
 app.config.from_object('backend.config.BaseConfig')
 
-db = SQLAlchemy(app)
 from .models import db
 db.drop_all()
 db.create_all()
