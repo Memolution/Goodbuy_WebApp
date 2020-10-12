@@ -41,11 +41,12 @@
       ```
   - postgres
     - PostgreSQLが起動する。
+    - コンテナを起動させた状態で別のターミナルからpostgresでSQLを叩きたいとき
     ```
     docker-compose exec postgres bash
     psql -U root -h postgres -d lifehack
     ```
-    
+
     でpostgresコマンドを叩ける
 - フロントの開発をするときには、通常通りホストマシン上でnpm run serve でローカルサーバーを立ち上げ、ビルドするときはnpm run build
 
