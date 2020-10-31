@@ -51,7 +51,7 @@
 
 ## デプロイするとき
 - Dockerイメージを用いてデプロイする
-- 手順
+### 手順
 1. masterの内容をdeployブランチにpullする
   - GitHub Desktopなら deployブランチからbranch->`Compare to master`を選択
   - コマンドラインなら(合ってるかわからない...)
