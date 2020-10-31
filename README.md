@@ -45,9 +45,36 @@
     docker-compose exec postgres bash
     psql -U root -h postgres -d lifehack
     ```
-    
+
     でpostgresコマンドを叩ける
 - フロントの開発をするときには、通常通りホストマシン上でnpm run serve でローカルサーバーを立ち上げ、ビルドするときはnpm run build
 
+## デプロイするとき
+- Dockerイメージを用いてデプロイする
+  - 手順(デプロイはdeployブランチでおこなう->masterの内容をdeployブランチにpullしてからやる)
+  - herokuにログイン
+  ```
+  heroku login
+  ```
+
+  - アプリ作成(初回のみ)
+  ```
+  heroku create [アプリ名]
+  ```
+
+  - Dockerイメージのビルド・プッシュ
+  ```
+  heroku container:push web
+  ```
+
+  - Dockerイメージのリリース
+  ```
+  heroku container:release web
+  ```
+
+  - 確認
+  ```
+  heroku open
+  ```
 ## その他使うコマンド
 - npmやpipのパッケージを更新した時には、変更を反映させるためにdocker-compose up --build (-d)でビルド&コンテナ起動するようにする。
