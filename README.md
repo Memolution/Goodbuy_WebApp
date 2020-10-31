@@ -51,7 +51,7 @@
 
 ## デプロイするとき
 - Dockerイメージを用いてデプロイする
-  - 手順(デプロイはdeployブランチでおこなう->masterの内容をdeployブランチにpullしてからやる)
+- 手順(デプロイはdeployブランチでおこなう->masterの内容をdeployブランチにpullしてからやる)
   - herokuにログイン
   ```
   heroku login
