@@ -10,8 +10,8 @@ db = SQLAlchemy(app)
 # from backend.models import init
 # init()
 
-# def init():
-#     db.create_all()
+def init():
+    db.create_all()
 
 
 class Test(db.Model):
