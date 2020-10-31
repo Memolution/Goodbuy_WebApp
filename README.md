@@ -51,28 +51,38 @@
 
 ## デプロイするとき
 - Dockerイメージを用いてデプロイする
-- 手順(デプロイはdeployブランチでおこなう->masterの内容をdeployブランチにpullしてからやる)
-  - herokuにログイン
+- 手順
+1. masterの内容をdeployブランチにpullする
+  - GitHub Desktopなら deployブランチからbranch->`Compare to master`を選択
+  - コマンドラインなら(合ってるかわからない...)
+  ```
+  git checkout master # masterブランチに移動
+  git pull origin master # masterを更新
+  git checkout deploy # deployブランチに移動
+  git merge master # マスターをマージ
+  ```
+
+2. herokuにログイン
   ```
   heroku login
   ```
 
-  - アプリ作成(初回のみ)
+3. アプリ作成(初回のみ)
   ```
   heroku create [アプリ名]
   ```
 
-  - Dockerイメージのビルド・プッシュ
+4. Dockerイメージのビルド・プッシュ
   ```
   heroku container:push web
   ```
 
-  - Dockerイメージのリリース
+5. Dockerイメージのリリース
   ```
   heroku container:release web
   ```
 
-  - 確認
+6. 確認
   ```
   heroku open
   ```
