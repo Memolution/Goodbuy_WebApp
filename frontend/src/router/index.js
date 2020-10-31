@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Todo from '../views/TodoView.vue'
+import Will from '../views/Will.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/todo',
     name: 'Todo',
     component: Todo
+  },
+  {
+    path: '/will',
+    name: 'Will',
+    component: Will
   }
 ]
 

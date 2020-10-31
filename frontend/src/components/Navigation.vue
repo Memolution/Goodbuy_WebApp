@@ -55,9 +55,10 @@ export default {
       drawer: null,
       nav_lists: [
         { name: 'Home', icon: 'mdi-home', link: '/' },
-        { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
-        { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
-        { name: 'Read List', icon: 'mdi-palette', link: '/read' },
+        { name: 'Willing to Buy', icon: 'mdi-vuetify', link: '/will' },
+        // { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
+        // { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
+        // { name: 'Read List', icon: 'mdi-palette', link: '/read' },
         { name: 'About', icon: 'mdi-palette', link: '/about' }
       ]
     }
