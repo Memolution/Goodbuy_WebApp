@@ -73,20 +73,26 @@
   ```
   heroku create [アプリ名]
   ```
+  
+4. Container Registry にログイン
+```
+heroku container:login
+```
 
-4. Dockerイメージのビルド・プッシュ
+5. Dockerイメージのビルド・プッシュ
   ```
   heroku container:push web
   ```
 
-5. Dockerイメージのリリース
+6. Dockerイメージのリリース
   ```
   heroku container:release web
   ```
 
-6. 確認
+7. 動作確認
   ```
   heroku open
   ```
+  
 ## その他使うコマンド
 - npmやpipのパッケージを更新した時には、変更を反映させるためにdocker-compose up --build (-d)でビルド&コンテナ起動するようにする。
