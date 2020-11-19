@@ -2,8 +2,7 @@
   <v-app>
     <v-col
       class="d-flex"
-      cols="12"
-      sm="6"
+
     >
     <v-select
       v-model="category"
@@ -23,9 +22,7 @@
         確定
       </v-btn>
   </v-col>
-  {{category.value}}
-  {{questionData}}
-  <viewQuestion />
+  <viewQuestion :questionData="questionData[0]" />
 
 </v-app>
 </template>
