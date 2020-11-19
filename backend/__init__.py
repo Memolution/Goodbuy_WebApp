@@ -8,10 +8,10 @@ app = Flask(__name__,
             template_folder="../dist")
 app.config.from_object('backend.config.BaseConfig')
 
-# from .models import db
-# db.drop_all()
-# db.create_all()
-#
+from .models import db
+db.drop_all()
+db.create_all()
+
 from .seeding import seed
 seed()
 
