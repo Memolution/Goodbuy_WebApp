@@ -41,13 +41,59 @@
       ```
   - postgres
     - PostgreSQLが起動する。
+    - コンテナを起動させた状態で別のターミナルからpostgresでSQLを叩きたいとき
     ```
     docker-compose exec postgres bash
     psql -U root -h postgres -d lifehack
     ```
-    
+
     でpostgresコマンドを叩ける
 - フロントの開発をするときには、通常通りホストマシン上でnpm run serve でローカルサーバーを立ち上げ、ビルドするときはnpm run build
 
+## デプロイするとき
+- Dockerイメージを用いてデプロイする
+### 手順
+1. masterの内容をdeployブランチにpullする
+  - GitHub Desktopなら
+    - masterブランチで `Fetch origin` で最新のものをpullする
+    - deployブランチに移動し, branch->`Update from master`を選択
+  - コマンドラインなら(合ってるかわからない...)
+  ```
+  git checkout master # masterブランチに移動
+  git pull origin master # masterを更新
+  git checkout deploy # deployブランチに移動
+  git merge master # マスターをマージ
+  ```
+
+2. herokuにログイン
+  ```
+  heroku login
+  ```
+
+3. アプリ作成(初回のみ)
+  ```
+  heroku create [アプリ名]
+  ```
+  
+4. Container Registry にログイン
+```
+heroku container:login
+```
+
+5. Dockerイメージのビルド・プッシュ
+  ```
+  heroku container:push web
+  ```
+
+6. Dockerイメージのリリース
+  ```
+  heroku container:release web
+  ```
+
+7. 動作確認
+  ```
+  heroku open
+  ```
+  
 ## その他使うコマンド
 - npmやpipのパッケージを更新した時には、変更を反映させるためにdocker-compose up --build (-d)でビルド&コンテナ起動するようにする。
