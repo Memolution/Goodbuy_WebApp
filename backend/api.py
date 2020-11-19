@@ -26,7 +26,7 @@ def test():
 
 @api.route("/getquestion", methods=["POST"])
 def getquestion():
-    category_name = request.form['category']
+    category_name = request.get_json()['category']
 
     category_id = db.session.query(Categories.id).\
         filter(Categories.category == category_name).all()[0]
