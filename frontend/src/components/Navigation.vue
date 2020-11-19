@@ -28,14 +28,14 @@
       </v-app-bar-nav-icon>
         <v-toolbar-title>
           <!-- <v-btn to="/" text>Life Hack App</v-btn> -->
-          Life Hack App
+          Memolution App
         </v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-items>
+      <!-- <v-toolbar-items>
         <v-btn text>Create New Account</v-btn>
         <v-btn text>Login</v-btn>
-      </v-toolbar-items>
+      </v-toolbar-items> -->
     </v-app-bar>
     <v-main>
       <router-view />

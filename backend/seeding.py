@@ -71,7 +71,47 @@ def seed():
         Questionnaire(
             category_id = 2,
             content = "その本読んで得られるものある？"
-        )
+        ),
+        Questionnaire(
+            category_id = 2,
+            content = "似たような本持ってない？"
+        ),
+        Questionnaire(
+            category_id = 3,
+            content = "最近買ったばっかりじゃない？"
+        ),
+        Questionnaire(
+            category_id = 3,
+            content = "セールまで待てば？"
+        ),
+        Questionnaire(
+            category_id = 3,
+            content = "素材とか気にした？"
+        ),
+        Questionnaire(
+            category_id = 4,
+            content = "ほんとに使う予定ある？"
+        ),
+        Questionnaire(
+            category_id = 4,
+            content = "似たようなの持ってない？"
+        ),
+        Questionnaire(
+            category_id = 4,
+            content = "セールまで待てば？"
+        ),
+        Questionnaire(
+            category_id = 5,
+            content = "新作だから買おうとしてない？"
+        ),
+        Questionnaire(
+            category_id = 5,
+            content = "最近買ったばっかりじゃない？"
+        ),
+        Questionnaire(
+            category_id = 5,
+            content = "デパ地下で試してから買えば？"
+        ),
     ]
     db.session.add_all(questionnaire_list)
     db.session.commit()
