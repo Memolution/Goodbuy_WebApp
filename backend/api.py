@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
-from . import db
-from .models import Test
+from .models import db
+from .models import *
+# coding: utf-8
 
 api = Blueprint('api', __name__)
 
@@ -22,3 +23,18 @@ def test():
     test_list = db.session.query(Test).all()
     test_dict = [test.to_dict() for test in test_list]
     return jsonify(test_dict)
+
+@api.route("/getquestion", methods=["POST"])
+def getquestion():
+    category_name = request.form['category']
+
+    category_id = db.session.query(Categories.id).\
+        filter(Categories.category == category_name).all()[0]
+
+    question_lists = db.session.query(Questionnaire).\
+        filter(Questionnaire.category_id == category_id).all()
+
+
+    question_dict = [question.to_dict() for question in question_lists]
+
+    return jsonify(question_dict)

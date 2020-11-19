@@ -1,6 +1,6 @@
 from . import db
-from .models import Test
-
+from .models import *
+# coding: utf-8
 
 def seed():
     # テーブルのデータを消去
@@ -20,8 +20,58 @@ def seed():
         )
     ]
 
-
-
     db.session.add_all(test_list)
+    db.session.commit()
 
+
+    db.session.query(Categories).delete()
+    category_list = [
+        Categories(
+            category = "日用品・生活雑貨"
+        ),
+        Categories(
+            category = "本"
+        ),
+        Categories(
+            category = "ファッション・小物"
+        ),
+        Categories(
+            category = "スポーツ・アウトドア"
+        ),
+        Categories(
+            category = "コスメ"
+        ),
+        Categories(
+            category = "その他"
+        ),
+    ]
+    db.session.add_all(category_list)
+    db.session.commit()
+
+
+    db.session.query(Questionnaire).delete()
+
+    questionnaire_list = [
+        Questionnaire(
+            category_id = 1,
+            content = "ストック多すぎない？"
+        ),
+        Questionnaire(
+            category_id = 1,
+            content = "今すぐ必要？"
+        ),
+        Questionnaire(
+            category_id = 1,
+            content = "スーパーにもっと安いのない？"
+        ),
+        Questionnaire(
+            category_id = 2,
+            content = "積読にならない？"
+        ),
+        Questionnaire(
+            category_id = 2,
+            content = "その本読んで得られるものある？"
+        )
+    ]
+    db.session.add_all(questionnaire_list)
     db.session.commit()

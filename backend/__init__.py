@@ -12,8 +12,8 @@ from .models import db
 db.drop_all()
 db.create_all()
 #
-# from .seeding import seed
-# seed()
+from .seeding import seed
+seed()
 
 
 # api.pyで記述したapiへのリクエストURLを登録
