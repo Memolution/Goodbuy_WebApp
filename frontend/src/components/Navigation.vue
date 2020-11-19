@@ -56,6 +56,7 @@ export default {
       nav_lists: [
         { name: 'Home', icon: 'mdi-home', link: '/' },
         { name: 'Willing to Buy', icon: 'mdi-vuetify', link: '/will' },
+        { name: 'Questionnaire', icon: 'mdi-palette', link: '/question' },
         // { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
         // { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
         // { name: 'Read List', icon: 'mdi-palette', link: '/read' },
