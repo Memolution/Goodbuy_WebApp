@@ -96,7 +96,7 @@ export default {
 
         var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5
         var inputData = textAll.replace(/\r?\n/g, '%0D%0A')
-        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy&text=' + inputData
+        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData
         target.innerHTML = '<a href=' + path + '" target="_blank">Tweet</a>'
       }
     }
