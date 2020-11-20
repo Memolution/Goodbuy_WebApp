@@ -55,8 +55,8 @@ export default {
       drawer: null,
       nav_lists: [
         { name: 'Home', icon: 'mdi-home', link: '/' },
-        { name: 'Willing to Buy', icon: 'mdi-vuetify', link: '/will' },
-        { name: 'Questionnaire', icon: 'mdi-palette', link: '/question' },
+        { name: 'Form', icon: 'mdi-content-save-edit', link: '/will' },
+        { name: 'Questionnaire', icon: 'mdi-comment-question', link: '/question' },
         // { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
         // { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
         // { name: 'Read List', icon: 'mdi-palette', link: '/read' },
