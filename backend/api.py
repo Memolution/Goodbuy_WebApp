@@ -38,3 +38,15 @@ def getquestion():
     question_dict = [question.to_dict() for question in question_lists]
 
     return jsonify(question_dict)
+
+
+@api.route("/geturl", methods=["POST"])
+def geturl():
+    try:
+        current_url = request.get_json()['url']
+        url_dict = {'current_url': current_url}
+    except TypeError:
+        no_url = {'current_url': ''}
+        return jsonify(no_url)
+
+    return jsonify(url_dict)
