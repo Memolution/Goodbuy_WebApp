@@ -1,27 +1,36 @@
 <template>
   <v-app>
-    <v-col
-      class="d-flex"
-
-    >
-    <v-select
-      v-model="category"
-      :items="items"
-      item-text="label"
-      item-value="value"
-      label="買いたい商品のジャンルを選んでね"
-      outlined
-      return-object
-    ></v-select>
-      <v-btn
-        @click="getQuestion"
-        dark
-        rounded
-        x-large
-        >
-        確定
-      </v-btn>
-  </v-col>
+    <v-card>
+      <v-col
+        class="d-flex"
+        cols="12"
+        sm="6"
+      >
+      <v-select
+        outlined
+        v-model="category"
+        :items="items"
+        item-text="label"
+        item-value="value"
+        label="買いたい商品のジャンルを選んでね"
+        return-object
+      ></v-select>
+      <!-- </v-col>
+      <v-col
+        class="d-flex"
+        cols="12"
+        sm="6"
+      > -->
+        <v-btn
+          @click="getQuestion"
+          dark
+          rounded
+          x-large
+          >
+          確定
+        </v-btn>
+      </v-col>
+    </v-card>
   <viewQuestion :questionData="questionData[0]" />
 
 </v-app>
