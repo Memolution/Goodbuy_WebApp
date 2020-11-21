@@ -9,7 +9,7 @@
       <v-select
         outlined
         v-model="category"
-        :items="items"
+        :items="items[0]"
         item-text="label"
         item-value="value"
         label="買いたい商品のジャンルを選んでね"
@@ -43,14 +43,7 @@ export default {
   name: 'Question',
   data () {
     return {
-      items: [
-        { label: '日用品・生活雑貨', value: '日用品・生活雑貨' },
-        { label: '本', value: '本' },
-        { label: 'ファッション・小物', value: 'ファッション・小物' },
-        { label: 'スポーツ・アウトドア', value: 'スポーツ・アウトドア' },
-        { label: 'コスメ', value: 'コスメ' },
-        { label: 'その他', value: 'その他' }
-      ],
+      items: [],
       category: '',
       questionData: []
     }
@@ -73,6 +66,19 @@ export default {
           console.log(error)
         })
     }
+  },
+  created () {
+    this.items = []
+    const path = process.env.VUE_APP_BASE_URL + 'api/getcategory'
+    // const self = this
+    this.$api
+      .post(path)
+      .then(response => {
+        this.items.push(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 </script>
