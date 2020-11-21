@@ -42,6 +42,9 @@ def seed():
             category = "コスメ"
         ),
         Categories(
+            category = "ゲーム"
+        ),
+        Categories(
             category = "その他"
         ),
     ]
@@ -111,6 +114,18 @@ def seed():
         Questionnaire(
             category_id = 5,
             content = "デパ地下で試してから買えば？"
+        ),
+        Questionnaire(
+            category_id = 6,
+            content = "新作だから買おうとしてない？"
+        ),
+        Questionnaire(
+            category_id = 6,
+            content = "積みゲー多くない？"
+        ),
+        Questionnaire(
+            category_id = 6,
+            content = "一緒にやる人いる？"
         ),
     ]
     db.session.add_all(questionnaire_list)
