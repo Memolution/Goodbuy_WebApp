@@ -24,8 +24,22 @@ def test():
     test_dict = [test.to_dict() for test in test_list]
     return jsonify(test_dict)
 
+
+@api.route("/getcategory", methods=["POST"])
+def get_category():
+    data = []
+    category_list =  db.session.query(Categories.category).all()
+    for category in category_list:
+        category_dict = {}
+        category_dict['label'] = category[0]
+        category_dict['value'] = category[0]
+        data.append(category_dict)
+
+    return jsonify(data)
+
+
 @api.route("/getquestion", methods=["POST"])
-def getquestion():
+def get_question():
     category_name = request.get_json()['category']
 
     category_id = db.session.query(Categories.id).\
@@ -41,7 +55,7 @@ def getquestion():
 
 
 @api.route("/geturl", methods=["POST"])
-def geturl():
+def get_url():
     try:
         current_url = request.get_json()['url']
         url_dict = {'current_url': current_url}
