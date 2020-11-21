@@ -113,7 +113,7 @@ def seed():
         ),
         Questionnaire(
             category_id = 5,
-            content = "デパ地下で試してから買えば？"
+            content = "デパートで試してから買えば？"
         ),
         Questionnaire(
             category_id = 6,
