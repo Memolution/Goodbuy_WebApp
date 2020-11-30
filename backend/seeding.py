@@ -30,7 +30,7 @@ def seed():
             category = "日用品・生活雑貨"
         ),
         Categories(
-            category = "本"
+            category = "本・電子書籍"
         ),
         Categories(
             category = "ファッション・小物"
@@ -39,10 +39,19 @@ def seed():
             category = "スポーツ・アウトドア"
         ),
         Categories(
-            category = "コスメ"
+            category = "コスメ・健康・医薬品"
         ),
         Categories(
             category = "ゲーム"
+        ),
+        Categories(
+            category = "家電・PC"
+        ),
+        Categories(
+            category = "食品・スイーツ・お酒"
+        ),
+        Categories(
+            category = "インテリア・寝具"
         ),
         Categories(
             category = "その他"
@@ -54,6 +63,8 @@ def seed():
 
     db.session.query(Questionnaire).delete()
 
+
+    # category_id は上のカテゴリーの並んでる順に対応（日用雑貨が1）
     questionnaire_list = [
         Questionnaire(
             category_id = 1,

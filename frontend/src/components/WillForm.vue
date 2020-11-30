@@ -35,6 +35,11 @@
           <br />
           <h3>{{evp_template.temp5}}</h3>
         </v-card-text>
+        <v-text-field
+          v-model="recentUrl"
+          label="商品のURLを入力してね"
+        >
+        </v-text-field>
         <v-divider></v-divider>
         <v-card-actions>
           <v-btn text v-on:click="GetTweet" id="TWEET">
@@ -47,9 +52,9 @@
       <div>
         {{validation.validateResult}}
       </div>
-      <div>
-        {{currentUrl}}
-      </div>
+      <!-- <div>
+        {{recentUrl}}
+      </div> -->
     </v-app>
   </div>
 </template>
@@ -73,7 +78,7 @@ export default {
         tweetWhat: '',
         tweetHow: ''
       },
-      currentUrl: [],
+      recentUrl: [],
       validation: {
         validateResult: ''
       }
@@ -89,25 +94,31 @@ export default {
       } else {
         this.validation.validateResult = 'めっちゃいい理由！'
         var target = document.getElementById('TWEET')
-        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5
+        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5 + this.recentUrl
         var inputData = textAll.replace(/\r?\n/g, '%0D%0A')
         var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData
-        target.innerHTML = '<a href=' + path + '" target="_blank">Tweet</a>'
+        target.innerHTML = '<a href=' + path + 'target="_blank">Tweet</a>'
       }
     }
   },
   created () {
-    this.currentUrl = []
-    const path = process.env.VUE_APP_BASE_URL + 'api/geturl'
-    // const self = this
-    this.$api
-      .post(path)
-      .then(response => {
-        this.currentUrl.push(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    this.recentUrl = []
+    var isUrl = this.$route.path
+    var wasUrl = isUrl.split('will')[1]
+    this.recentUrl.push(wasUrl)
+    // var queryStr = location.search
+    // var queryArr = queryStr.split('=')
+    // var url = encodeURI(queryArr[1])
+    // const path = process.env.VUE_APP_BASE_URL + 'api/geturl'
+    // // const self = this
+    // this.$api
+    //   .post(path)
+    //   .then(response => {
+    //     this.currentUrl.push(response.data)
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   }
 }
 </script>
