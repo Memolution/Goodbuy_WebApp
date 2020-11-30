@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Todo from '../views/TodoView.vue'
+// import Todo from '../views/TodoView.vue'
 import Will from '../views/Will.vue'
 import Question from '../views/Question.vue'
 
@@ -21,13 +21,13 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+  // {
+  //   path: '/todo',
+  //   name: 'Todo',
+  //   component: Todo
+  // },
   {
-    path: '/todo',
-    name: 'Todo',
-    component: Todo
-  },
-  {
-    path: '/will',
+    path: '/will*',
     name: 'Will',
     component: Will
   },
