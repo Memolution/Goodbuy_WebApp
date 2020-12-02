@@ -47,6 +47,9 @@
       <div>
         {{validation.validateResult}}
       </div>
+      <!-- <div>
+        {{recentUrl}}
+      </div> -->
     </v-app>
   </div>
 </template>
@@ -85,19 +88,10 @@ export default {
       } else {
         this.validation.validateResult = 'めっちゃいい理由！'
         var target = document.getElementById('TWEET')
-        // var evp_box = document.getElementsByClassName('tweetBox')
-        // console.log(evp_box)
-        // var queryStr = location.search
-        // var queryArr = queryStr.split('=')
-        // var url = encodeURI(queryArr[1])
-        // var text_all = ''
-        // var text_all = this.evp_template.temp1 + evp_box[0].value + this.evp_template.temp2 + this.evp_template.temp3 + evp_box[1].value+ this.evp_template.temp4 + evp_box[2].value + this.evp_template.temp5 + url
-        // TWEET.innerHTML = '<a class="button" href="https://twitter.com/intent/tweet?hashtags=Goodbuy&text=' + input_data + '" target="_blank">Tweet</a>'
-
         var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5
         var inputData = textAll.replace(/\r?\n/g, '%0D%0A')
-        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy&text=' + inputData
-        target.innerHTML = '<a href=' + path + '" target="_blank">Tweet</a>'
+        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData
+        target.innerHTML = '<a href=' + path + 'target="_blank">Tweet</a>'
       }
     }
   }
