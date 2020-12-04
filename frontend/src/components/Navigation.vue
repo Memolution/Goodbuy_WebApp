@@ -28,7 +28,7 @@
       </v-app-bar-nav-icon>
         <v-toolbar-title>
           <!-- <v-btn to="/" text>Life Hack App</v-btn> -->
-          Memolution App
+          Goodbuy
         </v-toolbar-title>
       <v-spacer></v-spacer>
 
@@ -42,7 +42,7 @@
     </v-main>
 
     <v-footer color="primary" dark app>
-      Created by Sydney
+      Created by Memolution
     </v-footer>
   </v-app>
 
