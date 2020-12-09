@@ -31,7 +31,7 @@
         </v-btn>
       </v-col>
     </v-card>
-  <viewQuestion :questionData="questionData[0]" />
+  <viewQuestion :questionData="questionData[0]" :status="questionData[1]" />
 
 </v-app>
 </template>
@@ -45,7 +45,8 @@ export default {
     return {
       items: [],
       category: '',
-      questionData: []
+      questionData: [],
+      status: 0
     }
   },
   components: {
@@ -54,6 +55,7 @@ export default {
   methods: {
     async getQuestion () {
       this.questionData = []
+      this.status = 0
       var postData = { category: this.category.value }
       const path = process.env.VUE_APP_BASE_URL + 'api/getquestion'
       // const self = this
@@ -61,6 +63,7 @@ export default {
         .post(path, postData)
         .then(response => {
           this.questionData.push(response.data)
+          this.questionData.push(this.status)
         })
         .catch(error => {
           console.log(error)
