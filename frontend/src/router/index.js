@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 // import Todo from '../views/TodoView.vue'
 import Will from '../views/Will.vue'
 import Question from '../views/Question.vue'
+import FreeWill from '../views/FreeWill.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,11 @@ const routes = [
     path: '/will*',
     name: 'Will',
     component: Will
+  },
+  {
+    path: '/freewill*',
+    name: 'FreeWill',
+    component: FreeWill
   },
   {
     path: '/question',

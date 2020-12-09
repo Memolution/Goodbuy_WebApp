@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <v-card>
-        <v-card-title>購入理由をエレベーターピッチ風に買いてみよう</v-card-title>
+        <v-card-title>購入理由をエレベーターピッチ風に書いてみよう</v-card-title>
         <v-card-text>
 
           <br />
