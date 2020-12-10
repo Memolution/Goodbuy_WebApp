@@ -51,7 +51,14 @@
         <v-divider class="mx-3"></v-divider>
         <v-card-text class=text-center>
           <div class="body-1 mb-1">
-             <h2>買おう！</h2>
+            <v-alert
+            outlined
+            type="success"
+            prominent
+            border="left"
+            >
+            <h2>買おう！</h2>
+            </v-alert>
           </div>
         </v-card-text>
       </v-card>
