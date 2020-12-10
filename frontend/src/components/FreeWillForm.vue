@@ -85,7 +85,7 @@ export default {
   created () {
     this.recentUrl = []
     var isUrl = this.$route.path
-    var wasUrl = isUrl.split('/will')[1]
+    var wasUrl = isUrl.split('will/')[1]
     this.recentUrl.push(wasUrl)
   }
 }
