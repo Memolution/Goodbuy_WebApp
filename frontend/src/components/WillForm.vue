@@ -55,7 +55,7 @@
         prominent
         border="left"
         >
-        {{validation.validateResult}}
+        <h2>{{validation.validateResult}}</h2>
         </v-alert>
       </div>
       <div v-else-if=" this.validation.validateResult == '20字以上入力してください' || this.validation.validateResult == '熱入りすぎだよ！' ">
@@ -65,7 +65,7 @@
         prominent
         border="left"
         >
-        {{validation.validateResult}}
+        <h2>{{validation.validateResult}}</h2>
         </v-alert>
       </div>
     </v-app>
