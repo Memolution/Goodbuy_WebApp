@@ -46,15 +46,28 @@
             <v-icon>mdi-twitter</v-icon>
             ツイートする
           </v-btn>
-          <!-- <span v-if="success">送信成功！</span> -->
         </v-card-actions>
       </v-card>
-      <div>
+      <div v-if="this.validation.validateResult == 'めっちゃいい理由！'">
+        <v-alert
+        outlined
+        type="success"
+        prominent
+        border="left"
+        >
         {{validation.validateResult}}
+        </v-alert>
       </div>
-      <!-- <div>
-        {{recentUrl}}
-      </div> -->
+      <div v-else-if=" this.validation.validateResult == '20字以上入力してください' || this.validation.validateResult == '熱入りすぎだよ！' ">
+        <v-alert
+        outlined
+        type="warning"
+        prominent
+        border="left"
+        >
+        {{validation.validateResult}}
+        </v-alert>
+      </div>
     </v-app>
   </div>
 </template>
@@ -103,7 +116,7 @@ export default {
   created () {
     this.recentUrl = []
     var isUrl = this.$route.path
-    var wasUrl = isUrl.split('will')[1]
+    var wasUrl = isUrl.split('will/')[1]
     this.recentUrl.push(wasUrl)
   }
 }
