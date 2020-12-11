@@ -58,6 +58,16 @@
             border="left"
             >
             <h2>買おう！</h2>
+            <v-card-actions>
+            <v-btn text v-on:click="GetTweet" id="TWEET">
+              <v-icon>mdi-twitter</v-icon>
+              ツイートする
+            </v-btn>
+            <v-btn text v-on:click="show_message">
+              <v-icon>mdi-account-check-outline</v-icon>
+                完了
+              </v-btn>
+            </v-card-actions>
             </v-alert>
           </div>
         </v-card-text>
@@ -68,6 +78,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   data () {
     return {
@@ -95,12 +106,26 @@ export default {
         // console.log(this.index)
         this.index += 1
       } else {
-        // alert('買おう！')
+        // alert('買お\う！')
         this.index = 0
         this.status = -1
         // this.$emit('catchStatus', -1)
       }
-    }
+    },
+    GetTweet (str, code) {
+      var textAll = this.questionData.content;
+      // this.recentUrl;
+      var inputData = textAll.replace(/\r?\n/g, '%0D%0A');
+      var path =
+        'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +
+        inputData;
+        target.innerHTML = '<a href=' + path + '>Tweet</a>';
+      },
+    show_message () {
+      // this.message = "お疲れ様でした!"
+      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+
+    },
   },
   computed: {
 
