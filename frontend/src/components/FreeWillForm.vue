@@ -3,8 +3,11 @@
     <v-app>
         <v-card>
         <v-card-title>購入理由を自由記述で書いてみよう</v-card-title>
-        <h2>記入例</h2>
-        <p>原付と黄色のヘルメットを買いたいと思います。活動範囲が広くなるからです。一人で海に行ったりしたいから、買います。車は、高いしお金がかかるので、原付にしました。二人乗りは、免許を取り直す必要があり、少しだるい。だから原付。</p>
+        <details>
+          <summary>記入例</summary>
+          原付と黄色のヘルメットを買いたいと思います。活動範囲が広くなるからです。一人で海に行ったりしたいから、買います。車は、高いしお金がかかるので、原付にしました。二人乗りは、免許を取り直す必要があり、少しだるい。だから原付。
+        </details>
+        <!-- <br /> -->
         <v-textarea
           outlined
           rows="10"
@@ -70,7 +73,7 @@ export default {
     GetTweet (str, code) {
       if (this.tweetContent.tweetWhy.length < 20) {
         this.validation.validateResult = '20字以上入力してください'
-      } else if (this.tweetContent.tweetWhy.length > 87) {
+      } else if (this.tweetContent.tweetWhy.length > 120) {
         this.validation.validateResult = '熱入りすぎだよ！'
       } else {
         this.validation.validateResult = 'めっちゃいい理由！'
@@ -121,4 +124,25 @@ export default {
   color: #55acee;
 }
 .error { color: red; }
+
+details {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+details[open] {
+    padding: .5em;
+}
+
+details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .5em;
+}
 </style>
