@@ -59,7 +59,7 @@
             >
             <h2>買おう！</h2>
             <v-card-actions>
-            <v-btn text v-on:click="GetTweet" id="TWEET">
+            <v-btn text v-on:click="conversionQuestion" id="TWEET">
               <v-icon>mdi-twitter</v-icon>
               ツイートする
             </v-btn>
@@ -83,7 +83,8 @@ export default {
   data () {
     return {
       // status: 0,
-      index: 0
+      index: 0,
+      tweetText: []
     }
   },
   props: {
@@ -106,29 +107,57 @@ export default {
         // console.log(this.index)
         this.index += 1
       } else {
-        // alert('買お\う！')
+        // alert('買おう！')
         this.index = 0
         this.status = -1
         // this.$emit('catchStatus', -1)
       }
     },
+    conversionQuestion () {
+      this.tweetText = []
+      var target = document.getElementById('TWEET');
+      const path = process.env.VUE_APP_BASE_URL + 'api/question_to_tweet';
+      const self = this;
+      // let params = new URLSearchParams();
+      var params = {
+        question: {
+          q0: this.questionData[0].content,
+          q1: this.questionData[1].content,
+          q2: this.questionData[2].content
+        }
+      }
+      console.log(params)
+      this.$api
+        .post(path, params)
+        .then(response => {
+          this.tweetText.push(response.data)
+          var inputData = this.tweetText[0].text.replace(/\r?\n/g, '%0D%0A');
+          var path ='https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
+          target.innerHTML = '<a href=' + path + '>Tweet</a>';
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     GetTweet (str, code) {
-      var textAll = this.questionData.content;
-      // this.recentUrl;
+      var textAll = ''
+      var target = document.getElementById('TWEET');
+      for(let i = 0; i < this.questionData.length; i++) {
+        console.log(this.questionData[i].content)
+        textAll += this.questionData[i].content
+      }
+      this.recentUrl;
       var inputData = textAll.replace(/\r?\n/g, '%0D%0A');
-      var path =
-        'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +
-        inputData;
-        target.innerHTML = '<a href=' + path + '>Tweet</a>';
-      },
+      var path ='https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
+      target.innerHTML = '<a href=' + path + '>Tweet</a>';
+    },
     show_message () {
       // this.message = "お疲れ様でした!"
       alert('お疲れ様でした！このタブは閉じても大丈夫です。')
 
     },
   },
-  computed: {
-
+  created: {
   }
 }
 </script>

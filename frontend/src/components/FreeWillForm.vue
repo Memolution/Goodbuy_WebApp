@@ -87,9 +87,7 @@ export default {
         var target = document.getElementById('TWEET');
         var textAll = this.tweetContent.tweetWhy + this.recentUrl;
         var inputData = textAll.replace(/\r?\n/g, "%0D%0A");
-        var path =
-          'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +
-          inputData;
+        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData;
         target.innerHTML = '<a href=' + path + '>Tweet</a>';
       }
     },
