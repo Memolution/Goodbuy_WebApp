@@ -166,15 +166,15 @@ export default {
       // this.message = "お疲れ様でした!"
       alert("お疲れ様でした！このタブを閉じて、お買い物を続けてください。");
     },
+    print_action() {
+      window.print();
+    }
   },
   created() {
     this.recentUrl = [];
     var isUrl = this.$route.path;
     var wasUrl = isUrl.split("question/")[1];
     this.recentUrl.push(wasUrl);
-  },
-  print_action() {
-    window.print();
-  },
+  }
 };
 </script>
