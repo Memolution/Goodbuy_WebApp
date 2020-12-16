@@ -38,7 +38,7 @@ const routes = [
   //   component: FreeWill
   // },
   {
-    path: '/question',
+    path: '/question*',
     name: 'Question',
     component: Question
   }

@@ -56,11 +56,7 @@
         </v-alert>
       </div>
       <div
-        v-else-if="
-          this.validation.validateResult == '20字以上入力してください' ||
-          this.validation.validateResult == '熱入りすぎだよ！'
-        "
-      >
+        v-else-if="this.validation.validateResult == '20字以上入力してください' || this.validation.validateResult== '熱入りすぎだよ！'">
         <v-alert outlined type="warning" prominent border="left">
           <h2>{{ validation.validateResult }}</h2>
         </v-alert>
@@ -118,7 +114,7 @@ export default {
     },
     show_message () {
       // this.message = "お疲れ様でした!"
-      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+      alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
 
     },
   },
