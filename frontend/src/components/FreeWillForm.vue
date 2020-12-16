@@ -93,7 +93,7 @@ export default {
     },
     show_message() {
       // this.message = 'お疲れ様！';
-      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+      alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
     },
   },
   created() {

@@ -84,7 +84,8 @@ export default {
     return {
       // status: 0,
       index: 0,
-      tweetText: []
+      tweetText: [],
+      recentUrl: []
     }
   },
   props: {
@@ -131,7 +132,8 @@ export default {
         .post(path, params)
         .then(response => {
           this.tweetText.push(response.data)
-          var inputData = this.tweetText[0].text.replace(/\r?\n/g, '%0D%0A');
+          // var inputData += this.recentUrl[0];
+          var inputData = (this.tweetText[0].text + this.recentUrl[0]).replace(/\r?\n/g, '%0D%0A');
           var path ='https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
           target.innerHTML = '<a href=' + path + '>Tweet</a>';
         })
@@ -146,18 +148,22 @@ export default {
         console.log(this.questionData[i].content)
         textAll += this.questionData[i].content
       }
-      this.recentUrl;
+      // this.recentUrl;
       var inputData = textAll.replace(/\r?\n/g, '%0D%0A');
       var path ='https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
       target.innerHTML = '<a href=' + path + '>Tweet</a>';
     },
     show_message () {
       // this.message = "お疲れ様でした!"
-      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+      alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
 
     },
   },
-  created: {
-  }
+  created () {
+    this.recentUrl = [];
+    var isUrl = this.$route.path;
+    var wasUrl = isUrl.split('question/')[1];
+    this.recentUrl.push(wasUrl);
+  },
 }
 </script>
