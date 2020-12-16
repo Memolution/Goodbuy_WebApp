@@ -56,11 +56,7 @@
         </v-alert>
       </div>
       <div
-        v-else-if="
-          this.validation.validateResult == '20字以上入力してください' ||
-          this.validation.validateResult == '熱入りすぎだよ！'
-        "
-      >
+        v-else-if="this.validation.validateResult == '20字以上入力してください' || this.validation.validateResult== '熱入りすぎだよ！'">
         <v-alert outlined type="warning" prominent border="left">
           <h2>{{ validation.validateResult }}</h2>
         </v-alert>
@@ -103,43 +99,22 @@ export default {
   },
   methods: {
     GetTweet (str, code) {
-      if (
-        this.tweetContent.tweetWhy.length +
-          this.tweetContent.tweetWhat.length +
-          this.tweetContent.tweetHow.length <
-        20
-      ) {
+      if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length < 20) {
         this.validation.validateResult = '20字以上入力してください';
-      } else if (
-        this.tweetContent.tweetWhy.length +
-          this.tweetContent.tweetWhat.length +
-          this.tweetContent.tweetHow.length >
-        87
-      ) {
+      } else if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length > 87) {
         this.validation.validateResult = '熱入りすぎだよ！';
       } else {
         this.validation.validateResult = 'めっちゃいい理由！';
         var target = document.getElementById('TWEET');
-        var textAll =
-          this.evp_template.temp1 +
-          this.tweetContent.tweetWhy +
-          this.evp_template.temp2 +
-          this.evp_template.temp3 +
-          this.tweetContent.tweetWhat +
-          this.evp_template.temp4 +
-          this.tweetContent.tweetHow +
-          this.evp_template.temp5 +
-          this.recentUrl;
+        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5 + this.recentUrl;
         var inputData = textAll.replace(/\r?\n/g, '%0D%0A');
-        var path =
-          'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +
-          inputData;
+        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
         target.innerHTML = '<a href=' + path + '>Tweet</a>';
       }
     },
     show_message () {
       // this.message = "お疲れ様でした!"
-      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+      alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
 
     },
   },

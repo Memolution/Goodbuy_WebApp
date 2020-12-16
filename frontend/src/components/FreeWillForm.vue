@@ -87,15 +87,13 @@ export default {
         var target = document.getElementById('TWEET');
         var textAll = this.tweetContent.tweetWhy + this.recentUrl;
         var inputData = textAll.replace(/\r?\n/g, "%0D%0A");
-        var path =
-          'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +
-          inputData;
+        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData;
         target.innerHTML = '<a href=' + path + '>Tweet</a>';
       }
     },
     show_message() {
       // this.message = 'お疲れ様！';
-      alert('お疲れ様でした！このタブは閉じても大丈夫です。')
+      alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
     },
   },
   created() {
