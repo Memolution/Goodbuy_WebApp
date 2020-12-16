@@ -64,3 +64,17 @@ def get_url():
         return jsonify(no_url)
 
     return jsonify(url_dict)
+
+
+@api.route("/question_to_tweet", methods=["POST"])
+def conversion_tweet():
+    data = request.get_json()['question']
+    text = '以下について考えたので買います。'
+    for i in range(3):
+        key = 'q{}'.format(i)
+        qi = data[key]
+        text = "%0a".join([text, qi])
+
+    tdict = {'text': text}
+
+    return jsonify(tdict)
