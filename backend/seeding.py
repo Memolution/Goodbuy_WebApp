@@ -27,34 +27,34 @@ def seed():
     db.session.query(Categories).delete()
     category_list = [
         Categories(
-            category = "日用品・生活雑貨"
+            category = "日用品・生活雑貨" #id = 1
         ),
         Categories(
-            category = "本・電子書籍"
+            category = "本・電子書籍" #id = 2
         ),
         Categories(
-            category = "ファッション・小物"
+            category = "ファッション・小物" #id = 3
         ),
         Categories(
-            category = "スポーツ・アウトドア"
+            category = "スポーツ・アウトドア" #id = 4
         ),
         Categories(
-            category = "コスメ・健康・医薬品"
+            category = "コスメ・健康・医薬品" #id = 5
         ),
         Categories(
-            category = "ゲーム"
+            category = "ゲーム" #id = 6
         ),
         Categories(
-            category = "家電・PC"
+            category = "家電・PC" #id = 7
         ),
         Categories(
-            category = "食品・スイーツ・お酒"
+            category = "食品・スイーツ・お酒" #id = 8
         ),
         Categories(
-            category = "インテリア・寝具"
+            category = "インテリア・寝具" #id = 9
         ),
         Categories(
-            category = "その他"
+            category = "その他" #id = 10
         ),
     ]
     db.session.add_all(category_list)
@@ -137,6 +137,54 @@ def seed():
         Questionnaire(
             category_id = 6,
             content = "一緒にやる人いる？"
+        ),
+        Questionnaire(
+            category_id = 7,
+            content = "性能比較した？"
+        ),
+        Questionnaire(
+            category_id = 7,
+            content = "今あるやつ壊れてからにしたら？"
+        ),
+        Questionnaire(
+            category_id = 7,
+            content = "もう少し待てばいいスペック出るかもよ？"
+        ),    
+        Questionnaire(
+            category_id = 8,
+            content = "近所のチラシと値段比較した？"
+        ),
+        Questionnaire(
+            category_id = 8,
+            content = "カロリー大丈夫？"
+        ),
+        Questionnaire(
+            category_id = 8,
+            content = "健康を考慮した？"
+        ),    
+        Questionnaire(
+            category_id = 9,
+            content = "置く場所ちゃんとある？"
+        ),
+        Questionnaire(
+            category_id = 9,
+            content = "今もってない？"
+        ),
+        Questionnaire(
+            category_id = 9,
+            content = "全体の雰囲気にちゃんとあってる？"
+        ),
+        Questionnaire(
+            category_id = 10,
+            content = "最近買ったばかりじゃない？"
+        ),
+        Questionnaire(
+            category_id = 10,
+            content = "今すぐ必要？"
+        ),
+        Questionnaire(
+            category_id = 10,
+            content = "他のと比較した？"
         ),
     ]
     db.session.add_all(questionnaire_list)
