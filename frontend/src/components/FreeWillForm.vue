@@ -30,6 +30,10 @@
             <v-icon>mdi-twitter</v-icon>
             ツイートする
           </v-btn>
+          <v-btn text v-on:click="print_action">
+          <v-icon>mdi-download</v-icon>
+            保存する
+          </v-btn>
           <v-btn text v-on:click="show_message">
             <v-icon>mdi-account-check-outline</v-icon>
             完了
@@ -91,6 +95,9 @@ export default {
         target.innerHTML = '<a href=' + path + '>Tweet</a>';
       }
     },
+    print_action() {
+      window.print();
+    },
     show_message() {
       // this.message = 'お疲れ様！';
       alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
@@ -101,7 +108,7 @@ export default {
     var isUrl = this.$route.path;
     var wasUrl = isUrl.split('will/')[1];
     this.recentUrl.push(wasUrl);
-  },
+  }
 };
 </script>
 

@@ -45,15 +45,30 @@
           <v-card-text class="text-center">
             <div class="body-1 mb-1">
               <v-alert outlined type="success" prominent border="left">
-                {{ answered }}
                 <h2>買おう！</h2>
+                <br />
+                <h3>あなたは以下の質問に答えました.</h3>
+                <p v-for="data in questionData" :key="data.id">
+                  <v-card light elevation="16">
+                    <v-divider class="mx-3"></v-divider>
+                    <v-card-text class="text-center">
+                      <div class="body-1 mb-1">
+                        <h2>{{ data.content }}</h2>
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </p>
                 <v-card-actions>
                   <v-btn text v-on:click="conversionQuestion" id="TWEET">
                     <v-icon>mdi-twitter</v-icon>
                     ツイートする
                   </v-btn>
+                  <v-btn text v-on:click="print_action">
+                  <v-icon>mdi-download</v-icon>
+                    保存する
+                  </v-btn>
                   <v-btn text v-on:click="show_message">
-                    <v-icon>mdi-account-check-outline</v-icon>
+                  <v-icon>mdi-account-check-outline</v-icon>
                     完了
                   </v-btn>
                 </v-card-actions>
@@ -74,7 +89,7 @@ export default {
       // status: 0,
       index: 0,
       tweetText: [],
-      recentUrl: [],
+      recentUrl: []
     };
   },
   props: {
@@ -96,11 +111,6 @@ export default {
         this.index += 1;
       } else {
         // alert('買おう！')
-        var answered = "";
-        for (let i = 0; i < this.questionData.length; i++) {
-          console.log(this.questionData[i].content);
-          answered += this.questionData[i].content;
-        }
         this.index = 0;
         this.status = -1;
         // this.$emit('catchStatus', -1)
@@ -156,12 +166,15 @@ export default {
       // this.message = "お疲れ様でした!"
       alert("お疲れ様でした！このタブを閉じて、お買い物を続けてください。");
     },
+    print_action() {
+      window.print();
+    }
   },
   created() {
     this.recentUrl = [];
     var isUrl = this.$route.path;
     var wasUrl = isUrl.split("question/")[1];
     this.recentUrl.push(wasUrl);
-  },
+  }
 };
 </script>
