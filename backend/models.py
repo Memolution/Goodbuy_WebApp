@@ -187,7 +187,7 @@ class Questionnaire(db.Model):
     def __repr__(self):
         return '<ReadList %r, %r>' % self.content
 
-    class R_user(db.Model):
+class R_user(db.Model):
     __tablename__ = 'r_users'
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
