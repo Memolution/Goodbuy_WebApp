@@ -5,6 +5,10 @@ from .models import *
 def seed():
     # テーブルのデータを消去
     db.session.query(Test).delete()
+    db.session.query(User).delete()
+    # db.session.query(Post).delete()
+    db.session.query(Categories).delete()
+    db.session.query(Questionnaire).delete()
 
     # 初期データを追加
     test_list = [
@@ -149,7 +153,7 @@ def seed():
         Questionnaire(
             category_id = 7,
             content = "もう少し待てばいいスペック出るかもよ？"
-        ),    
+        ),
         Questionnaire(
             category_id = 8,
             content = "近所のチラシと値段比較した？"
@@ -161,7 +165,7 @@ def seed():
         Questionnaire(
             category_id = 8,
             content = "健康を考慮した？"
-        ),    
+        ),
         Questionnaire(
             category_id = 9,
             content = "置く場所ちゃんとある？"
