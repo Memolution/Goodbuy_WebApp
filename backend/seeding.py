@@ -149,7 +149,7 @@ def seed():
         Questionnaire(
             category_id = 7,
             content = "もう少し待てばいいスペック出るかもよ？"
-        ),    
+        ),
         Questionnaire(
             category_id = 8,
             content = "近所のチラシと値段比較した？"
@@ -161,7 +161,7 @@ def seed():
         Questionnaire(
             category_id = 8,
             content = "健康を考慮した？"
-        ),    
+        ),
         Questionnaire(
             category_id = 9,
             content = "置く場所ちゃんとある？"
@@ -188,4 +188,40 @@ def seed():
         ),
     ]
     db.session.add_all(questionnaire_list)
+    db.session.commit()
+
+    user_list = [
+    #passwordは'pass'をハッシュ化したもの
+        R_user(
+                user_name='Shindo',
+                e_mail='test1@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+        R_user(
+                user_name='Futami',
+                e_mail='test2@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+        R_user(
+                user_name='R_Sato',
+                e_mail='test3@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+        R_user(
+                user_name='Y_Sato',
+                e_mail='test4@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+        R_user(
+                user_name='Matsuda',
+                e_mail='test5@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+        R_user(
+                user_name='Watanabe',
+                e_mail='test6@example.com',
+                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
+            ),
+    ]
+    db.session.add_all(user_list)
     db.session.commit()
