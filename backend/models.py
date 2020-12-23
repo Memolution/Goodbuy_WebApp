@@ -186,3 +186,22 @@ class Questionnaire(db.Model):
 
     def __repr__(self):
         return '<ReadList %r, %r>' % self.content
+
+class R_user(db.Model):
+    __tablename__ = 'r_users'
+    __table_args__ = {'extend_existing': True}
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(100))
+    e_mail = db.Column(db.String(100))
+    password = db.Column(db.String(100))
+
+    def to_dict(self):
+        return dict(
+            id=self.id,
+            user_name=self.user_name,
+            e_mail=self.e_mail,
+            password=self.password
+        )
+
+    def __repr__(self):
+        return '<User %r>' % self.user_name

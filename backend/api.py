@@ -78,3 +78,66 @@ def conversion_tweet():
     tdict = {'text': text}
 
     return jsonify(tdict)
+
+# ざっくりユーザー新規登録API
+@api.route("/registration", methods=["POST"])
+def new_regstration():
+    if "name" in request.form:
+        user_name = request.form["name"]
+    else:
+        return "error: not found name"
+
+    if len(db.session.query(R_user.user_name).filter(
+            R_user.user_name == user_name).all()) != 0:
+        return "this user name is exist"
+
+    if "email" in request.form:
+        user_email = request.form["email"]
+    else:
+        return "error: not found email"
+
+    if len(db.session.query(R_user.user_name).filter(
+            R_user.e_mail == user_email).all()) != 0:
+        return "this email address is exist"
+
+    if "password" in request.form:
+        password = request.form["password"]
+    else:
+        return "error: not found password"
+
+    user_data = [R_user(
+        e_mail=user_email,
+        user_name=user_name,
+        password=password
+    )]
+
+    db.session.add_all(user_data)
+    db.session.commit()
+
+    return "complete registration"
+
+
+# ざっくりlogin認証
+@api.route("/login", methods=["POST"])
+def login():
+    user_email = ""
+    password = ""
+    if "email" in request.form:
+        user_email = request.form["email"]
+    else:
+        return "error: not found email"
+
+    if "password" in request.form:
+        password = request.form["password"]
+    else:
+        return "error: not found password"
+
+    user_name = db.session.query(
+        R_user.user_name).filter(
+        R_user.e_mail == user_email,
+        R_user.password == password).all()
+    if len(user_name) == 0:
+        return "permission denied"
+
+    user_name = user_name[0][0]
+    return str(user_name)
