@@ -134,7 +134,9 @@ export default {
         .post(path, params)
         .then((response) => {
           this.tweetText.push(response.data);
-          // var inputData += this.recentUrl[0];
+          if (typeof this.recentUrl[0] == 'undefined'){
+            this.recentUrl[0] = ''
+          }
           var inputData = (this.tweetText[0].text + this.recentUrl[0]).replace(
             /\r?\n/g,
             "%0D%0A"
