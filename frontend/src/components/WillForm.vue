@@ -40,14 +40,15 @@
         </v-text-field>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn text v-on:click="GetTweet" id="TWEET">
+          <v-btn text v-on:click="postTweet" id="TWEET">
             <v-icon>mdi-twitter</v-icon>
             ツイートする
           </v-btn>
           <v-btn text v-on:click="print_action">
           <v-icon>mdi-download</v-icon>
             保存する
-          </v-btn>          <v-btn text v-on:click="show_message">
+          </v-btn>
+          <v-btn text v-on:click="show_message">
             <v-icon>mdi-account-check-outline</v-icon>
             完了
           </v-btn>
@@ -64,11 +65,6 @@
           <h2>{{ validation.validateResult }}</h2>
         </v-alert>
       </div>
-      <!-- <div v-if="this.message.length > 0">
-        <v-alert outlined type="success" prominent border="left">
-          {{ message }}
-        </v-alert>
-      </div> -->
     </v-app>
   </div>
 </template>
@@ -97,24 +93,11 @@ export default {
         validateResult: '',
       },
       recentUrl: [],
-      message: ''
+      message: '',
+      tweetUrl: []
     };
   },
   methods: {
-    GetTweet (str, code) {
-      if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length < 20) {
-        this.validation.validateResult = '20字以上入力してください';
-      } else if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length > 87) {
-        this.validation.validateResult = '熱入りすぎだよ！';
-      } else {
-        this.validation.validateResult = 'めっちゃいい理由！';
-        var target = document.getElementById('TWEET');
-        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5 + this.recentUrl;
-        var inputData = textAll.replace(/\r?\n/g, '%0D%0A');
-        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' +inputData;
-        target.innerHTML = '<a href=' + path + '>Tweet</a>';
-      }
-    },
     print_action() {
       window.print();
     },    show_message () {
@@ -122,6 +105,36 @@ export default {
       alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
 
     },
+    postTweet () {
+      this.tweetUrl = [];
+      if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length < 20) {
+        this.validation.validateResult = '20字以上入力してください';
+      } else if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length > 87) {
+        this.validation.validateResult = '熱入りすぎだよ！';
+      } else {
+        var target = document.getElementById("ツイートする");
+        this.validation.validateResult = 'めっちゃいい理由！';
+        const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
+        const self = this;
+        // let params = new URLSearchParams();
+        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5 + this.recentUrl;
+        var params = {
+          tweet: {
+            content: textAll
+          },
+        };
+        console.log(params);
+        this.$api
+          .post(path, params)
+          .then((response) => {
+            this.tweetUrl.push(response.data);
+            target.innerHTML = this.tweetUrl[0]['url'];
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
   },
   created () {
     this.recentUrl = [];

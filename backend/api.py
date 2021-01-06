@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, request
 from .models import db
 from .models import *
+import urllib.parse
+
 # coding: utf-8
 
 api = Blueprint('api', __name__)
@@ -69,15 +71,37 @@ def get_url():
 @api.route("/question_to_tweet", methods=["POST"])
 def conversion_tweet():
     data = request.get_json()['question']
+    url = request.get_json()['url'][0]
     text = '以下について考えたので買います。'
     for i in range(3):
         key = 'q{}'.format(i)
         qi = data[key]
         text = "%0a".join([text, qi])
 
-    tdict = {'text': text}
+    # text = text.replace('\n', '')
+    base_url = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text='
+    first_html_tag = '<a href="'
+    latter_html_tag = '"target="_blank" rel="noopener noreferrer">ツイートする</a>'
+    url = first_html_tag + base_url + text + url + latter_html_tag
+    urldict = {'url': url}
 
-    return jsonify(tdict)
+    return jsonify(urldict)
+
+
+@api.route("/content_to_tweet", methods=["POST"])
+def conversion_url():
+    data = request.get_json()['tweet']['content']
+    # inputData = textAll.replace(/\r?\n/g, '%0D%0A');
+    data = data.replace('\n', '')
+    base_url = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text='
+    first_html_tag = '<a href="'
+    latter_html_tag = '"target="_blank" rel="noopener noreferrer">ツイートする</a>'
+    url = first_html_tag + base_url + data + latter_html_tag
+
+    urldict = {'url': url}
+
+    return jsonify(urldict)
+
 
 # ざっくりユーザー新規登録API
 @api.route("/registration", methods=["POST"])
@@ -141,3 +165,20 @@ def login():
 
     user_name = user_name[0][0]
     return str(user_name)
+
+
+
+@api.route("/line", methods=["POST"])
+def post_line():
+    data = request.get_json()['line']['message']
+
+    message = urllib.parse.quote(data)
+
+    base_url = 'https://line.me/R/msg/text/?'
+    first_html_tag = '<a href="'
+    latter_html_tag = '"target="_blank" rel="noopener noreferrer">Lineに保存</a>'
+    url = first_html_tag + base_url + message + latter_html_tag
+
+    urldict = {'url': url}
+
+    return jsonify(urldict)
