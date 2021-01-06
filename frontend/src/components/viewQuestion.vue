@@ -36,6 +36,7 @@
               </v-card-text>
             </v-card>
           </p>
+          <notBuy />
         </v-card>
       </p>
 
@@ -83,6 +84,7 @@
 
 <script>
 /* eslint-disable */
+import notBuy from '@/components/notBuy.vue'
 export default {
   data() {
     return {
@@ -92,6 +94,9 @@ export default {
       recentUrl: [],
       tweetUrl: []
     };
+  },
+  components: {
+    notBuy
   },
   props: {
     questionData: {
@@ -131,6 +136,7 @@ export default {
           q0: this.questionData[0].content,
           q1: this.questionData[1].content,
           q2: this.questionData[2].content,
+          q3: this.questionData[3].content,
         },
         url: this.recentUrl
       };
