@@ -182,3 +182,18 @@ def post_line():
     urldict = {'url': url}
 
     return jsonify(urldict)
+
+
+@api.route("/visitCount", methods=["POST"])
+def level_up():
+    degree = ['初心者', '見習い', '一人前', '達人']
+    visit_count = request.get_json()['visitCount']['count']
+    current_level = int(visit_count / 5)
+    previous_level = current_level - 1
+    if current_level >= len(degree):
+        message = {'message':'いい買い物習慣の達人の域です!'}
+    else:
+        comment = 'あなたはいい買い物習慣{0}から{1}に上達しました'.format(degree[previous_level], degree[current_level])
+        message = {'message': comment}
+
+    return jsonify(message)
