@@ -92,7 +92,9 @@ export default {
       index: 0,
       tweetText: [],
       recentUrl: [],
-      tweetUrl: []
+      tweetUrl: [],
+      visitCount: -1,
+      levelUpMessage: []
     };
   },
   components: {
@@ -152,11 +154,37 @@ export default {
         });
     },
     show_message() {
-      // this.message = "お疲れ様でした!"
+      this.countAction()
       alert("お疲れ様でした！このタブを閉じて、お買い物を続けてください。");
     },
     print_action() {
+      this.countAction()
       window.print();
+    },
+    countAction () {
+      this.levelUpMessage = []
+      this.visitCount += 1
+      localStorage.setItem('visitCount', this.visitCount)
+      if (this.visitCount % 5 == 0){
+        // API叩く
+        const path = process.env.VUE_APP_BASE_URL + "api/visitCount";
+        const self = this;
+        var params = {
+          visitCount: {
+            count: this.visitCount
+          },
+        };
+        console.log(params);
+        this.$api
+          .post(path, params)
+          .then((response) => {
+            this.levelUpMessage.push(response.data);
+            alert(this.levelUpMessage[0].message)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
   },
   created() {
@@ -164,6 +192,13 @@ export default {
     var isUrl = this.$route.path;
     var wasUrl = isUrl.split("question/")[1];
     this.recentUrl.push(wasUrl);
+  },
+  mounted () {
+    if (localStorage.getItem('visitCount') == null) {
+      localStorage.setItem('visitCount', 1)
+    } else {
+      this.visitCount = JSON.parse(localStorage.getItem('visitCount'))
+    }
   }
 };
 </script>

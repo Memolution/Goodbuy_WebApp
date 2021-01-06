@@ -94,16 +94,19 @@ export default {
       },
       recentUrl: [],
       message: '',
-      tweetUrl: []
+      tweetUrl: [],
+      visitCount: -1,
+      levelUpMessage: []
     };
   },
   methods: {
     print_action() {
+      this.countAction()
       window.print();
-    },    show_message () {
-      // this.message = "お疲れ様でした!"
+    },
+    show_message () {
+      this.countAction()
       alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
-
     },
     postTweet () {
       this.tweetUrl = [];
@@ -112,6 +115,7 @@ export default {
       } else if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length > 87) {
         this.validation.validateResult = '熱入りすぎだよ！';
       } else {
+        // this.countAction()
         var target = document.getElementById("ツイートする");
         this.validation.validateResult = 'めっちゃいい理由！';
         const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
@@ -134,6 +138,31 @@ export default {
             console.log(error);
           });
       }
+    },
+    countAction () {
+      this.levelUpMessage = []
+      this.visitCount += 1
+      localStorage.setItem('visitCount', this.visitCount)
+      if (this.visitCount % 5 == 0){
+        // API叩く
+        const path = process.env.VUE_APP_BASE_URL + "api/visitCount";
+        const self = this;
+        var params = {
+          visitCount: {
+            count: this.visitCount
+          },
+        };
+        console.log(params);
+        this.$api
+          .post(path, params)
+          .then((response) => {
+            this.levelUpMessage.push(response.data);
+            alert(this.levelUpMessage[0].message)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     }
   },
   created () {
@@ -142,6 +171,13 @@ export default {
     var wasUrl = isUrl.split('will/')[1];
     this.recentUrl.push(wasUrl);
   },
+  mounted () {
+    if (localStorage.getItem('visitCount') == null) {
+      localStorage.setItem('visitCount', 1)
+    } else {
+      this.visitCount = JSON.parse(localStorage.getItem('visitCount'))
+    }
+  }
 };
 </script>
 
