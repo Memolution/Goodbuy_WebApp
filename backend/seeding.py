@@ -191,37 +191,37 @@ def seed():
     db.session.commit()
 
     user_list = [
-    #passwordは'pass'をハッシュ化したもの
+    #passwordは'memolution'をハッシュ化したもの
         R_user(
-                user_name='Shindo',
-                e_mail='test1@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='Shindo',
+            e_mail='test1@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
         R_user(
-                user_name='Futami',
-                e_mail='test2@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='Futami',
+            e_mail='test2@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
         R_user(
-                user_name='R_Sato',
-                e_mail='test3@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='R_Sato',
+            e_mail='test3@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
         R_user(
-                user_name='Y_Sato',
-                e_mail='test4@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='Y_Sato',
+            e_mail='test4@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
         R_user(
-                user_name='Matsuda',
-                e_mail='test5@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='Matsuda',
+            e_mail='test5@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
         R_user(
-                user_name='Watanabe',
-                e_mail='test6@example.com',
-                password='93329c60badb9d8252ad6c9d5f0c07f1848948bc5bd4b42ad9301a90639e8880'
-            ),
+            user_name='Watanabe',
+            e_mail='test6@example.com',
+            password='68d135429728e3991a35543b13ee17e973aaff722625e689f574108f19964b86'
+        ),
     ]
     db.session.add_all(user_list)
     db.session.commit()
