@@ -57,11 +57,10 @@ export default {
         { name: 'Home', icon: 'mdi-home', link: '/' },
         { name: 'Form', icon: 'mdi-content-save-edit', link: '/will' },
         // { name: 'Form-2', icon: 'mdi-content-save-edit', link: '/freewill' },
-        { name: 'Questionnaire', icon: 'mdi-comment-question', link: '/question' },
+        { name: 'Questionnaire', icon: 'mdi-comment-question', link: '/question' }
         // { name: 'Todo List', icon: 'mdi-vuetify', link: '/todo' },
         // { name: 'Purchased List', icon: 'mdi-cogs', link: '/order' },
         // { name: 'Read List', icon: 'mdi-palette', link: '/read' },
-        { name: 'About', icon: 'mdi-palette', link: '/about' }
       ]
     }
   }
