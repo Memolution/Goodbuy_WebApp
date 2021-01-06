@@ -91,6 +91,10 @@ def seed():
             content = "似たような本持ってない？"
         ),
         Questionnaire(
+            category_id = 2,
+            content = "読むのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 3,
             content = "最近買ったばっかりじゃない？"
         ),
@@ -101,6 +105,10 @@ def seed():
         Questionnaire(
             category_id = 3,
             content = "素材とか気にした？"
+        ),
+        Questionnaire(
+            category_id = 3,
+            content = "着るのが楽しみ？"
         ),
         Questionnaire(
             category_id = 4,
@@ -115,6 +123,10 @@ def seed():
             content = "セールまで待てば？"
         ),
         Questionnaire(
+            category_id = 4,
+            content = "使うのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 5,
             content = "新作だから買おうとしてない？"
         ),
@@ -125,6 +137,10 @@ def seed():
         Questionnaire(
             category_id = 5,
             content = "デパートで試してから買えば？"
+        ),
+        Questionnaire(
+            category_id = 5,
+            content = "使うのが楽しみ？"
         ),
         Questionnaire(
             category_id = 6,
@@ -139,6 +155,10 @@ def seed():
             content = "一緒にやる人いる？"
         ),
         Questionnaire(
+            category_id = 6,
+            content = "プレイするのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 7,
             content = "性能比較した？"
         ),
@@ -149,6 +169,10 @@ def seed():
         Questionnaire(
             category_id = 7,
             content = "もう少し待てばいいスペック出るかもよ？"
+        ),
+        Questionnaire(
+            category_id = 7,
+            content = "使うのが楽しみ？"
         ),
         Questionnaire(
             category_id = 8,
@@ -163,6 +187,10 @@ def seed():
             content = "健康を考慮した？"
         ),
         Questionnaire(
+            category_id = 8,
+            content = "食べるのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 9,
             content = "置く場所ちゃんとある？"
         ),
@@ -175,6 +203,10 @@ def seed():
             content = "全体の雰囲気にちゃんとあってる？"
         ),
         Questionnaire(
+            category_id = 4,
+            content = "使うのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 10,
             content = "最近買ったばかりじゃない？"
         ),
@@ -185,6 +217,10 @@ def seed():
         Questionnaire(
             category_id = 10,
             content = "他のと比較した？"
+        ),
+        Questionnaire(
+            category_id = 10,
+            content = "使うのが楽しみ？"
         ),
     ]
     db.session.add_all(questionnaire_list)
