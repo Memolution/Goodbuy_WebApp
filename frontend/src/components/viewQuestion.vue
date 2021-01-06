@@ -89,7 +89,8 @@ export default {
       // status: 0,
       index: 0,
       tweetText: [],
-      recentUrl: []
+      recentUrl: [],
+      tweetUrl: []
     };
   },
   props: {
@@ -118,6 +119,9 @@ export default {
     },
     conversionQuestion() {
       this.tweetText = [];
+      if (typeof this.recentUrl[0] == 'undefined'){
+        this.recentUrl[0] = ''
+      }
       var target = document.getElementById("TWEET");
       const path = process.env.VUE_APP_BASE_URL + "api/question_to_tweet";
       const self = this;
@@ -128,41 +132,18 @@ export default {
           q1: this.questionData[1].content,
           q2: this.questionData[2].content,
         },
+        url: this.recentUrl
       };
       console.log(params);
       this.$api
         .post(path, params)
         .then((response) => {
-          this.tweetText.push(response.data);
-          if (typeof this.recentUrl[0] == 'undefined'){
-            this.recentUrl[0] = ''
-          }
-          var inputData = (this.tweetText[0].text + this.recentUrl[0]).replace(
-            /\r?\n/g,
-            "%0D%0A"
-          );
-          var path =
-            "https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=" +
-            inputData;
-          target.innerHTML = "<a href=" + path + ">Tweet</a>";
+          this.tweetUrl.push(response.data);
+          target.innerHTML = this.tweetUrl[0]['url'];
         })
         .catch((error) => {
           console.log(error);
         });
-    },
-    GetTweet(str, code) {
-      var textAll = "";
-      var target = document.getElementById("TWEET");
-      for (let i = 0; i < this.questionData.length; i++) {
-        console.log(this.questionData[i].content);
-        textAll += this.questionData[i].content;
-      }
-      // this.recentUrl;
-      var inputData = textAll.replace(/\r?\n/g, "%0D%0A");
-      var path =
-        "https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=" +
-        inputData;
-      target.innerHTML = "<a href=" + path + ">Tweet</a>";
     },
     show_message() {
       // this.message = "お疲れ様でした!"

@@ -26,7 +26,7 @@
         </v-text-field>
         <v-divider></v-divider>
         <v-card-actions>
-          <v-btn text v-on:click="GetTweet" id="TWEET">
+          <v-btn text v-on:click="postTweet" id="TWEET">
             <v-icon>mdi-twitter</v-icon>
             ツイートする
           </v-btn>
@@ -55,11 +55,6 @@
           {{ validation.validateResult }}
         </v-alert>
       </div>
-      <!-- <div v-if="this.message.length > 0">
-        <v-alert outlined type="success" prominent border="left">
-          {{ message }}
-        </v-alert>
-      </div> -->
     </v-app>
   </div>
 </template>
@@ -78,21 +73,40 @@ export default {
       },
       recentUrl: [],
       message: '',
+      tweetUrl: []
     };
   },
   methods: {
-    GetTweet(str, code) {
-      if (this.tweetContent.tweetWhy.length < 20) {
+    postTweet () {
+      this.tweetUrl = [];
+      if ( this.tweetContent.tweetWhy.length < 20) {
         this.validation.validateResult = '20字以上入力してください';
-      } else if (this.tweetContent.tweetWhy.length > 120) {
+      } else if ( this.tweetContent.tweetWhy.length > 87) {
         this.validation.validateResult = '熱入りすぎだよ！';
       } else {
+        var target = document.getElementById("TWEET");
         this.validation.validateResult = 'めっちゃいい理由！';
-        var target = document.getElementById('TWEET');
-        var textAll = this.tweetContent.tweetWhy + this.recentUrl;
-        var inputData = textAll.replace(/\r?\n/g, "%0D%0A");
-        var path = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text=' + inputData;
-        target.innerHTML = '<a href=' + path + '>Tweet</a>';
+        const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
+        const self = this;
+        // let params = new URLSearchParams();
+        // this.tweetText.tweetWhy = this.tweetText.tweetWhy.replace(/\r?\n/g, '\\n');
+        console.log(this.tweetContent.tweetWhy)
+        var textAll = this.tweetContent.tweetWhy + this.recentUrl
+        var params = {
+          tweet: {
+            content: textAll
+          },
+        };
+        console.log(params);
+        this.$api
+          .post(path, params)
+          .then((response) => {
+            this.tweetUrl.push(response.data);
+            target.innerHTML = this.tweetUrl[0]['url'];
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     },
     print_action() {
