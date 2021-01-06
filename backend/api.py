@@ -73,7 +73,7 @@ def conversion_tweet():
     data = request.get_json()['question']
     url = request.get_json()['url'][0]
     text = '以下について考えたので買います。'
-    for i in range(3):
+    for i in range(4):
         key = 'q{}'.format(i)
         qi = data[key]
         text = "%0a".join([text, qi])
