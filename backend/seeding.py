@@ -79,6 +79,10 @@ def seed():
             content = "スーパーにもっと安いのない？"
         ),
         Questionnaire(
+            category_id = 1,
+            content = "使うのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 2,
             content = "積読にならない？"
         ),
@@ -201,10 +205,6 @@ def seed():
         Questionnaire(
             category_id = 9,
             content = "全体の雰囲気にちゃんとあってる？"
-        ),
-        Questionnaire(
-            category_id = 4,
-            content = "使うのが楽しみ？"
         ),
         Questionnaire(
             category_id = 10,
