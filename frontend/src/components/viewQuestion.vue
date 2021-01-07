@@ -124,7 +124,8 @@ export default {
         // this.$emit('catchStatus', -1)
       }
     },
-    conversionQuestion() {
+    async conversionQuestion() {
+      await this.countAction()
       this.tweetText = [];
       if (typeof this.recentUrl[0] == 'undefined'){
         this.recentUrl[0] = ''
