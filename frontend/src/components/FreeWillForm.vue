@@ -113,10 +113,12 @@ export default {
       }
     },
     print_action() {
+      this.countAction()
       window.print();
     },
     show_message() {
       // this.message = 'お疲れ様！';
+      this.countAction()
       alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
     },
     countAction () {
