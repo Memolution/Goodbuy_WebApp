@@ -108,15 +108,15 @@ export default {
       this.countAction()
       alert('お疲れ様でした！このタブを閉じて、お買い物を続けてください。')
     },
-    postTweet () {
+    async postTweet () {
       this.tweetUrl = [];
       if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length < 20) {
         this.validation.validateResult = '20字以上入力してください';
       } else if ( this.tweetContent.tweetWhy.length + this.tweetContent.tweetWhat.length + this.tweetContent.tweetHow.length > 87) {
         this.validation.validateResult = '熱入りすぎだよ！';
       } else {
-        // this.countAction()
-        var target = document.getElementById("ツイートする");
+        await this.countAction()
+        var target = document.getElementById("TWEET");
         this.validation.validateResult = 'めっちゃいい理由！';
         const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
         const self = this;
@@ -144,7 +144,6 @@ export default {
       this.visitCount += 1
       localStorage.setItem('visitCount', this.visitCount)
       if (this.visitCount % 5 == 0){
-        // API叩く
         const path = process.env.VUE_APP_BASE_URL + "api/visitCount";
         const self = this;
         var params = {

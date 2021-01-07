@@ -207,6 +207,10 @@ def seed():
             content = "全体の雰囲気にちゃんとあってる？"
         ),
         Questionnaire(
+            category_id = 9,
+            content = "飾るのが楽しみ？"
+        ),
+        Questionnaire(
             category_id = 10,
             content = "最近買ったばかりじゃない？"
         ),
