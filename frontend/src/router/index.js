@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-// import Todo from '../views/TodoView.vue'
 import Will from '../views/Will.vue'
 import Question from '../views/Question.vue'
 // import FreeWill from '../views/FreeWill.vue'
@@ -14,21 +13,11 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  // {
-  //   path: '/todo',
-  //   name: 'Todo',
-  //   component: Todo
-  // },
   {
     path: '/will*',
     name: 'Will',
     component: Will
   },
-  // {
-  //   path: '/freewill*',
-  //   name: 'FreeWill',
-  //   component: FreeWill
-  // },
   {
     path: '/question*',
     name: 'Question',

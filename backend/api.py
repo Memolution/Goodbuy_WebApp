@@ -73,7 +73,7 @@ def conversion_tweet():
     data = request.get_json()['question']
     url = request.get_json()['url'][0]
     text = '以下について考えたので買います。'
-    for i in range(3):
+    for i in range(4):
         key = 'q{}'.format(i)
         qi = data[key]
         text = "%0a".join([text, qi])
@@ -182,3 +182,21 @@ def post_line():
     urldict = {'url': url}
 
     return jsonify(urldict)
+
+
+@api.route("/visitCount", methods=["POST"])
+def level_up():
+    degree = ['初心者', '見習い', '一人前', '達人']
+    visit_count = request.get_json()['visitCount']['count']
+    current_level = int(visit_count / 5)
+    previous_level = current_level - 1
+    if current_level >= len(degree):
+        message = {'message':'いい買い物習慣の達人の域です!'}
+    else:
+        if previous_level <= 0:
+            comment = 'あなたはいい買い物習慣の初心者です。どんどんこのアプリを使っていい買い物習慣を作っていきましょう！'
+        else:
+            comment = 'あなたはいい買い物習慣{0}から{1}に上達しました'.format(degree[previous_level], degree[current_level])
+        message = {'message': comment}
+
+    return jsonify(message)
