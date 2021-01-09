@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Will from '../views/Will.vue'
 import Question from '../views/Question.vue'
+import Rank from '../views/Rank.vue'
 // import FreeWill from '../views/FreeWill.vue'
 
 Vue.use(VueRouter)
@@ -22,6 +23,11 @@ const routes = [
     path: '/question*',
     name: 'Question',
     component: Question
+  },
+  {
+    path: '/rank',
+    name: 'Rank',
+    component: Rank
   }
 ]
 
