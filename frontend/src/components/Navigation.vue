@@ -56,7 +56,8 @@ export default {
       nav_lists: [
         { name: 'Home', icon: 'mdi-home', link: '/' },
         { name: 'Form', icon: 'mdi-content-save-edit', link: '/will' },
-        { name: 'Questionnaire', icon: 'mdi-comment-question', link: '/question' }
+        { name: 'Questionnaire', icon: 'mdi-comment-question', link: '/question' },
+        { name: 'Rank', icon: 'mdi-arm-flex', link: '/rank' }
       ]
     }
   }
