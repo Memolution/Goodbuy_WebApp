@@ -178,7 +178,7 @@ export default {
       this.visitCount = JSON.parse(localStorage.getItem('visitCount'))
     }
     this.options.series[0].data = [this.visitCount]
-    this.items = []
+    this.message = []
 
     const path = process.env.VUE_APP_BASE_URL + 'api/viewLevel'
     // const self = this
