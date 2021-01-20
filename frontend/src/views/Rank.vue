@@ -173,12 +173,12 @@ export default {
   created () {
     if (localStorage.getItem('visitCount') == null) {
       localStorage.setItem('visitCount', 0)
-
+      // this.visitCount = 0
     } else {
       this.visitCount = JSON.parse(localStorage.getItem('visitCount'))
     }
     this.options.series[0].data = [this.visitCount]
-    this.message = []
+    // this.message = []
 
     const path = process.env.VUE_APP_BASE_URL + 'api/viewLevel'
     // const self = this
