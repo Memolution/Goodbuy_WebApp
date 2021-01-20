@@ -88,6 +88,9 @@ def conversion_tweet():
     else:
         shorten_url = original_url
 
+    if type(shorten_url) is not str:
+        shorten_url = ''
+
     text = '以下について考えたので買います。'
     for i in range(4):
         key = 'q{}'.format(i)
@@ -125,6 +128,9 @@ def conversion_url():
             shorten_url = original_url
     else:
         shorten_url = original_url
+
+    if type(shorten_url) is not str:
+        shorten_url = ''
 
     data = data.replace('\n', '')
     base_url = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text='
