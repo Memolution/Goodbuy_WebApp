@@ -97,7 +97,8 @@ export default {
         var textAll = this.tweetContent.tweetWhy + this.recentUrl
         var params = {
           tweet: {
-            content: textAll
+            content: textAll,
+            url: this.recentUrl
           },
         };
         console.log(params);

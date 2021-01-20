@@ -70,17 +70,20 @@ export default {
       },
       recentUrl: [],
       message: '',
-      tweetUrl: []
+      tweetUrl: [],
+      visitCount: -1,
+      levelUpMessage: []
     };
   },
   methods: {
-    postTweet () {
+    async postTweet () {
       this.tweetUrl = [];
       if ( this.tweetContent.tweetWhy.length < 20) {
         this.validation.validateResult = '20字以上入力してください';
       } else if ( this.tweetContent.tweetWhy.length > 87) {
         this.validation.validateResult = '熱入りすぎだよ！';
       } else {
+        await this.countAction()
         var target = document.getElementById("TWEET");
         this.validation.validateResult = 'めっちゃいい理由！';
         const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
@@ -91,7 +94,8 @@ export default {
         var textAll = this.tweetContent.tweetWhy + this.recentUrl
         var params = {
           tweet: {
-            content: textAll
+            content: textAll,
+            url: this.recentUrl
           },
         };
         console.log(params);
@@ -107,18 +111,54 @@ export default {
       }
     },
     print_action() {
+      this.countAction()
       window.print();
     },
     show_message() {
       // this.message = 'お疲れ様！';
+      this.countAction()
       alert('お疲れ様でした！いい判断だと思いますよ。このタブを閉じて、お買い物を続けてください。')
     },
+    countAction () {
+      this.levelUpMessage = []
+      this.visitCount += 1
+      localStorage.setItem('visitCount', this.visitCount)
+      if (this.visitCount % 5 == 0){
+        const path = process.env.VUE_APP_BASE_URL + "api/visitCount";
+        const self = this;
+        var params = {
+          visitCount: {
+            count: this.visitCount
+          },
+        };
+        console.log(params);
+        this.$api
+          .post(path, params)
+          .then((response) => {
+            this.levelUpMessage.push(response.data);
+            alert(this.levelUpMessage[0].message)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
   },
   created() {
     this.recentUrl = [];
     var isUrl = this.$route.path;
     var wasUrl = isUrl.split('will/')[1];
     this.recentUrl.push(wasUrl);
+  },
+  mounted () {
+    if (localStorage.getItem('visitCount') == null) {
+      localStorage.setItem('visitCount', 1)
+    } else {
+      this.visitCount = JSON.parse(localStorage.getItem('visitCount'))
+    }
+    // if (this.visitCount == 0) {
+    //   this.visitCount = -1
+    // }
   }
 };
 </script>
