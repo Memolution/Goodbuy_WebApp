@@ -1,4 +1,19 @@
-# Flask + Vue
+# Goodbuy
+
+## スライド
+https://docs.google.com/presentation/d/1QCJ1WCg9zngbLG4tI_DoR6qx911PPcrEr7-CrfvoV88/edit#slide=id.p
+
+## エレベーターピッチ
+[Goodbuy] は
+[目的のない買い物]を
+解決したい
+[慎重に買い物をしたい人]向けの
+[Webサービス]です。
+これは [購入理由を記述するタイミングを与えること] によって、
+[家計簿・買い物リスト] とは違って
+[理にかなった買い物] を実現できます。
+
+
 
 ## 構成
 - backend
