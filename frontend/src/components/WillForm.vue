@@ -121,16 +121,18 @@ export default {
         const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
         const self = this;
         // let params = new URLSearchParams();
-        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5 + this.recentUrl;
+        var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5
         var params = {
           tweet: {
-            content: textAll
+            content: textAll,
+            url: this.recentUrl
           },
         };
         console.log(params);
         this.$api
           .post(path, params)
           .then((response) => {
+            console.log(response.data)
             this.tweetUrl.push(response.data);
             target.innerHTML = this.tweetUrl[0]['url'];
           })
