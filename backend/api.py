@@ -203,12 +203,12 @@ def post_line():
 
 @api.route("/visitCount", methods=["POST"])
 def level_up():
-    degree = ['初心者', '見習い', '一人前', '達人']
+    degree = ['初心者', '見習い', '駆け出し', '修行中', '一人前', '玄人', '名人', '鉄人', '達人', '大達人', '神']
     visit_count = request.get_json()['visitCount']['count']
     current_level = int(visit_count / 5)
     previous_level = current_level - 1
     if current_level >= len(degree):
-        message = {'message':'いい買い物習慣の達人の域です!'}
+        message = {'message':'いい買い物習慣の神の域です!'}
     else:
         if previous_level < 0:
             comment = 'あなたはいい買い物習慣の初心者です。どんどんこのアプリを使っていい買い物習慣を作っていきましょう！'
@@ -221,13 +221,13 @@ def level_up():
 
 @api.route("/viewLevel", methods=["POST"])
 def view_level():
-    degree = ['初心者', '見習い', '一人前', '達人']
+    degree = ['初心者', '見習い', '駆け出し', '修行中', '一人前', '玄人', '名人', '鉄人', '達人', '大達人', '神']
     visit_count = request.get_json()['visitCount']['count']
     current_level = int(visit_count / 5)
     times = 5 - int(visit_count % 5)
 
     if current_level >= len(degree):
-        message = {'message':'いい買い物習慣の達人の域です!'}
+        message = {'message':'いい買い物習慣の神の域です!'}
     else:
         comment = 'いい買い物習慣のレベルはずばり{0}です！\n あと{1}回購入理由を考えると買い物習慣が上達します！'.format(degree[current_level], times)
         message = {'message': comment}
