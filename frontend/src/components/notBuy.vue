@@ -88,10 +88,15 @@ export default {
         this.validation.validateResult = 'めっちゃいい理由！';
         const path = process.env.VUE_APP_BASE_URL + "api/content_to_tweet";
         const self = this;
+
+        if (typeof this.recentUrl[0] == 'undefined'){
+          this.recentUrl[0] = ''
+        }
+
         // let params = new URLSearchParams();
         // this.tweetText.tweetWhy = this.tweetText.tweetWhy.replace(/\r?\n/g, '\\n');
         console.log(this.tweetContent.tweetWhy)
-        var textAll = this.tweetContent.tweetWhy + this.recentUrl
+        var textAll = this.tweetContent.tweetWhy
         var params = {
           tweet: {
             content: textAll,

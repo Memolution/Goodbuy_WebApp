@@ -73,12 +73,20 @@ def get_url():
 def conversion_tweet():
     data = request.get_json()['question']
     original_url = request.get_json()['url'][0]
+    if 'amazon.co.jp' in original_url:
+        base = 'https://www.amazon.co.jp'
+        pattern_list = [r'/dp\/.+/', r'/gp\/product\/[0-9]{10}', r'/gp\/.+/', r'/gp\/product\/[0-9]{10}']
+        # pattern = r'/dp\/.+/'
+        # shorten = re.search(pattern, original_url)
+        for pattern in pattern_list:
+            shorten = re.search(pattern, original_url)
+            if shorten:
+                shorten_url = base + shorten.group()
+                break
 
-    base = 'https://www.amazon.co.jp'
-    pattern = r'/dp\/.+/'
-    shorten = re.search(pattern, original_url)
-
-    shorten_url = base + shorten.group()
+            shorten_url = original_url
+    else:
+        shorten_url = original_url
 
     text = '以下について考えたので買います。'
     for i in range(4):
@@ -103,11 +111,20 @@ def conversion_url():
 
     # https://www.amazon.co.jp/dp/4798163686/ これを目標にする
     # dp/商品コード10桁　
-    base = 'https://www.amazon.co.jp'
-    pattern = r'/dp\/.+/'
-    shorten = re.search(pattern, original_url)
+    if 'amazon.co.jp' in original_url:
+        base = 'https://www.amazon.co.jp'
+        pattern_list = [r'/dp\/.+/', r'/gp\/product\/[0-9]{10}', r'/gp\/.+/', r'/gp\/product\/[0-9]{10}']
+        # pattern = r'/dp\/.+/'
+        # shorten = re.search(pattern, original_url)
+        for pattern in pattern_list:
+            shorten = re.search(pattern, original_url)
+            if shorten:
+                shorten_url = base + shorten.group()
+                break
 
-    shorten_url = base + shorten.group()
+            shorten_url = original_url
+    else:
+        shorten_url = original_url
 
     data = data.replace('\n', '')
     base_url = 'https://twitter.com/intent/tweet?hashtags=Goodbuy_enp&text='

@@ -122,6 +122,11 @@ export default {
         const self = this;
         // let params = new URLSearchParams();
         var textAll = this.evp_template.temp1 + this.tweetContent.tweetWhy + this.evp_template.temp2 + this.evp_template.temp3 + this.tweetContent.tweetWhat + this.evp_template.temp4 + this.tweetContent.tweetHow + this.evp_template.temp5
+
+        if (typeof this.recentUrl[0] == 'undefined'){
+          this.recentUrl[0] = ''
+        }
+
         var params = {
           tweet: {
             content: textAll,
